@@ -1,0 +1,34 @@
+8009B478 read entrance index
+8009AD08 add age/time offset?
+
+8011B930 setup index
+code
+8009A9C4 stores cutscene index to setup index
+8009A9E4 stores 00 to setup index
+8009AA04 stores 01 to setup index
+8009AA1C stores 03 to setup index
+8009AA24 stores 02 to setup index
+8009AA28 stores 03 to setup index ?
+8009AA98 stores 00 to setup index
+8009AAAC stores 00 to setup index
+8009AAB4 stores 01 to setup index
+8009AAB8 stores 00 to setup index
+8009AB04 stores 02 to setup index
+8009AB10 stores 03 to setup index
+8009AB14 stores 03 to setup index ?
+
+file entrance index readers
+code
+80056CC8 x
+80056DD4 x
+80056DDC x
+80056E18 x
+80056F4C x
+80061804 x
+8009A770 x
+8009AA2C x
+8009AA44 v adds setup index
+8009AD04 x
+8009D984 x
+ovl_player_actor
+8039DA70 v adds setup index

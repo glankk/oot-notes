@@ -1,0 +1,52 @@
+8000B140 file table
+
+80000F60 dma
+$v0:= dram buffer (80008490)
+
+800010EC yaz0dec
+$a0: yaz0 dram address
+$a1: dram destination
+
+80001254 prom file loader
+$a0: prom_start
+$a1: dram_buf
+$a2: size
+saves prom_start to 80008894
+saves size to 80008898
+saves 80008890 to 80008890 SeemsGood
+calls 80000F60, args unchanged
+calls yaz0dec
+
+80000B0C z64_GetFile
+-> 80000B68 find file
+calls 80001254 at 80000C20
+
+80004480 ?
+called twice by 80000B0C around a call to 80001254
+
+
+typedef struct
+{
+  /* file loading params */
+  uint32_t          vrom_addr;
+  void             *dram_addr;
+  size_t            size;
+  /* unknown, seem to be unused */
+  void             *unk_00_;
+  uint32_t          unk_01_;
+  uint32_t          unk_02_;
+  /* completion notification params */
+  z64_OSMesgQueue  *notify_queue;
+  z64_OSMesg        notify_message;
+} z64_getfile_t;
+
+80000CA8              file loader thread proc
+80000CD0 - 80000D0C   message loop
+while (1) {
+  z64_getfile_t *next_file = z64_osRecvMesg(0x80007D40, 0x80008474, OS_MESG_BLOCK);
+  if (!next_file)
+    break;
+  z64_GetFile(next_file);
+  if (next_file->notify_queue)
+    z64_osSendMesg(next_file->notify_queue, next_file->notify_message, OS_MESG_NOBLOCK);
+}

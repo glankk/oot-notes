@@ -1,0 +1,30 @@
+ƒNƒ‰ƒVƒbƒNƒRƒ“ƒgƒ    [ƒ‰,ª▪K—v,Å,·  B
+
+NARE
+  800507C8  allocate
+    80F00120  pointer (80F1D0E0)
+    80F00124  size    (00800000)
+
+  800155DC  allocation size
+
+NACJ
+  80E74000  ram start
+  
+  80E534E0  pointer (80E74000)
+  80E534E4  size    (00400000)
+
+  800078F0  00002EB0
+
+n64       vc
+80000000  80E74000  guest ram start
+8012C4F0  80FA04F0  oot-1.2 pif buffer
+          80E73F20  vc pif buffer
+
+809F2950  button mappings
+
+rom       ram
+0016BAF0  809F2A5C  du (du 08000000)
+0016BAF4  809F2A60  dd (dd 04000000)
+0016BAF8  809F2A64  dl (dl 02000000)
+0016BAFC  809F2A68  dr (dr 01000000)
+0016BB04  809F2A70  cd (l  00200000)

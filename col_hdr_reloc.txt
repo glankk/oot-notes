@@ -1,0 +1,495 @@
+80033EF4  collision header relocator
+0C00CFBD  jal 0x80033EF4
+
+code
+0001  04039CE0
+0001  0403A950
+0001  0403ACB0
+0001  0403B020
+
+En_Box
+000E  06005FC8
+
+En_Hata
+0076  060000C0
+
+Bg_Pushbox
+0082  06000350
+
+Door_Shutter
+0037  06012FD0
+001C  0601D9D0
+
+Bg_Treemouth
+002A  06000E94
+
+Bg_Dodoago
+002B  06001DDC
+
+Bg_Hidan_Dalm
+002C  0600DA10
+
+Bg_Hidan_Hrock
+002C  0600D054
+Bg_Hidan_Hrock
+002C  0600D188
+
+Bg_Hidan_Rock
+002C  0600CB80
+Bg_Hidan_Rock
+002C  0600DF78
+
+Bg_Hidan_Rsekizou
+002C  0600D5C0
+
+Bg_Hidan_Sekizou
+002C  0600CC90
+Bg_Hidan_Sekizou
+002C  0600CDA0
+
+Bg_Hidan_Sima
+002C  060120E8
+Bg_Hidan_Sima
+002C  0600FAE8
+
+Bg_Hidan_Syoku
+002C  0600E568
+
+Bg_Spot00_Hanebasi
+002F  060005E0
+Bg_Spot00_Hanebasi
+002F  06000280
+
+Bg_Hidan_Fslift
+002C  0600E1E8
+
+Bg_Ydan_Hasi
+0036  06007798
+Bg_Ydan_Hasi
+0036  06005780
+
+Bg_Ydan_Maruta
+0036  060066A8
+
+En_Am
+0038  06000118
+
+Bg_Ddan_Jd
+002B  06003CE0
+
+Bg_Breakwall
+018A  06000118
+0019  06024764
+0019  060250A8
+
+En_Jj
+0040  06000A1C
+En_Jj
+0040  06001830
+En_Jj
+0040  0600BA8C
+
+Bg_Ddan_Kd
+002B  06004F30
+
+Bg_Menkuri_Kaiten
+004D  060042D8
+
+Bg_Mizu_Movebg
+0059  060003F0
+0059  06000998
+0059  06000ED0
+0059  06003590
+0059  060015F8
+
+Bg_Mori_Hineri
+006F  06003490
+Bg_Mori_Hineri
+005C  060054B8
+Bg_Mori_Hineri
+0071  06006078
+Bg_Mori_Hineri
+0070  060043D0
+
+Bg_Mjin
+0061  06000658
+0068  06000330
+
+Bg_Hidan_Kousi
+002C  0600E2CC
+002C  0600E380
+002C  0600E430
+
+Door_Toki
+005E  06007888
+
+Bg_Hidan_Hamstep
+002C  0600DE44
+Bg_Hidan_Hamstep
+002C  0600DD1C
+
+En_Lightbox
+0081  06001F10
+
+En_Pu_box
+0082  060006D0
+
+Bg_Mori_Bigst
+0072  0600221C
+
+Bg_Mori_Elevator
+0072  060035F8
+
+Bg_Mori_Kaitenkabe
+0072  060063B8
+
+Bg_Mori_Rakkatenjo
+0072  060087AC
+
+Bg_Heavy_Block
+009A  0600169C
+
+Bg_Po_Event
+0099  06007860
+
+Bg_Spot02_Objects
+00A1  06012BA4
+Bg_Spot02_Objects
+00A1  060133EC
+Bg_Spot02_Objects
+00A1  060128D8
+
+Bg_Haka
+00A2  06000428
+
+Bg_Vb_Sima
+009C  06000D68
+
+Bg_Haka_Megane
+0069  06004330
+0069  060044D0
+0069  06004780
+0069  06004940
+0069  06004B00
+0069  06004CC0
+008D  06001830
+008D  06001AB8
+
+Bg_Haka_MeganeBG
+0069  06009168
+Bg_Haka_MeganeBG
+0069  0600A7F4
+Bg_Haka_MeganeBG
+0069  06005334
+Bg_Haka_MeganeBG
+0069  06000118
+
+Bg_Haka_Ship
+0069  0600E408
+Bg_Haka_Ship
+0069  0600ED7C
+
+En_Brob
+00AC  06001A70
+
+Bg_Spot09_Obj
+00AE  06005520
+00AE  0600283C
+00AE  06008458
+00AE  06007580
+
+Bg_Spot18_Obj
+00AF  06002FE4
+00AF  0600261C
+
+Bg_Haka_Tubo
+0069  060108B8
+
+Bg_Haka_Trap
+0069  06009CD0
+Bg_Haka_Trap
+0069  060081D0
+Bg_Haka_Trap
+0069  06008D10
+
+Bg_Haka_Huta
+008D  06000870
+
+Bg_Haka_Zou
+0069  06006F70
+Bg_Haka_Zou
+0069  06005E30
+Bg_Haka_Zou
+008D  06000C2C
+
+Bg_Bdan_Objects
+0096  06008CE0
+Bg_Bdan_Objects
+0096  06005048
+Bg_Bdan_Objects
+0096  06005580
+
+Bg_Hidan_Kowarerukabe
+002C  0600D800
+002C  0600D878
+002C  0600D8F8
+
+Bg_Bombwall
+0002  050041B0
+
+Bg_Mizu_Uzu
+0059  060074EC
+
+Bg_Spot06_Objects
+006A  06000EE8
+Bg_Spot06_Objects
+006A  06001238
+
+Bg_Ice_Objects
+006B  060003F0
+
+Bg_Mori_Hashigo
+0072  060037D8
+
+Bg_Mori_Hashira4
+0072  06001AF8
+0072  060089E0
+
+Bg_Bdan_Switch
+0096  06005CF8
+
+Bg_Ice_Shelter
+006B  06001C1C
+006B  06002920
+
+Bg_Haka_Gate
+0069  060131C4
+Bg_Haka_Gate
+0069  06010E10
+Bg_Haka_Gate
+0069  0600A938
+
+Bg_Spot15_Saku
+00F0  060004D0
+
+Bg_Jya_Zurerukabe
+00F1  06012508
+
+Bg_Jya_Cobra
+00F1  0601167C
+
+Bg_Jya_Kanaami
+00F1  0600F208
+
+Obj_Oshihiki
+0003  05004E98
+
+Bg_Gate_Shutter
+0181  06001DA8
+
+Bg_Spot01_Idohashira
+00F9  0600075C
+
+Bg_Ganon_Otyuka
+* Not Object
+
+Bg_Spot15_Rrbox
+00F0  06000348
+
+Bg_Umajump
+0100  06001438
+
+Bg_Spot08_Iceblock
+0074  06002FD8
+0074  06001904
+
+Bg_Spot03_Taki
+0112  06000C98
+
+Bg_Spot07_Taki
+0113  06002590
+Bg_Spot07_Taki
+0113  060038FC
+
+Bg_Relay_Objects
+006C  060025FC
+Bg_Relay_Objects
+006C  060003C4
+
+Obj_Bean
+011E  060005DC
+
+Obj_Switch
+0003  05005FB8
+
+Obj_Elevator
+011B  06000360
+
+Obj_Lift
+011D  060003D0
+
+Obj_Hsblock
+011C  06000730
+011C  06000578
+
+En_Blkobj
+0125  06007564
+
+Bg_Ingate
+0129  060011B8
+
+Bg_Spot01_Idosoko
+0180  06003C64
+
+Bg_Gjyo_Bridge
+0130  06000DB8
+
+Bg_Jya_Megami
+00F1  06005C4C
+
+Bg_Jya_Lift
+00F1  0600D7E8
+
+Bg_Jya_Amishutter
+00F1  0600C4C8
+
+Bg_Jya_Bombiwa
+00F1  0600E710
+
+Bg_Spot18_Basket
+00AF  06002154
+
+En_Siofuki
+013A  06000D78
+
+Bg_Sst_Floor
+00E2  060180F8
+
+Bg_Jya_Ironobj
+016C  06000D48
+016C  06001430
+
+En_Jsjutan
+* Not Object
+
+Door_Gerudo
+014B  06000170
+
+Demo_Gt
+014C  06005CB8
+014C  060091E4
+
+Bg_Zg
+0156  060011D4
+
+Bg_Spot05_Soko
+0161  06000918
+Bg_Spot05_Soko
+0161  060012C0
+
+Bg_Jya_1flift
+00F1  060004A8
+
+Bg_Spot12_Gate
+0162  060011EC
+
+Bg_Spot12_Saku
+0162  0600238C
+
+Bg_Spot00_Break
+0166  06000908
+Bg_Spot00_Break
+0166  06000AF0
+
+Bg_Spot01_Objects2
+0180  06001A38
+Bg_Spot01_Objects2
+0181  06001C58
+
+Bg_Spot11_Bakudankabe
+016F  06001A58
+
+Obj_Kibako2
+0170  06000B70
+
+Bg_Bom_Guard
+0178  06001C40
+
+Bg_Spot08_Bakudankabe
+0074  060039D4
+
+Bg_Spot17_Bakudankabe
+00B1  06000A38
+
+Demo_Gj
+0185  06002850
+0185  06002D28
+0185  06002FE4
+0185  060033E0
+0185  06001B70
+0185  06001F70
+0185  06002448
+0185  06003AF0
+
+Bg_Gnd_Firemeiro
+0179  0600ECD8
+
+Bg_Gnd_Darkmeiro
+0179  0600C080
+
+Bg_Gnd_Iceblock
+0179  06004618
+
+Bg_Ydan_Sp
+0036  06006460
+Bg_Ydan_Sp
+0036  06006050
+
+En_Gb
+0189  0600C2D0
+
+Bg_Mizu_Bwall
+0059  06001C58
+0059  060025A4
+0059  06001DE8
+
+Bg_Mizu_Shutter
+0059  06007250
+0059  060073F0
+
+Bg_Bowl_Wall
+0178  06000CB8
+Bg_Bowl_Wall
+0178  06001B00
+
+Bg_Spot18_Futa
+00AF  06000368
+
+Bg_Spot18_Shutter
+00AF  06000534
+
+Bg_Ice_Turara
+006B  06002594
+
+Bg_Ice_Shutter
+006B  06002854
+
+Obj_Timeblock
+0190  06000B30
+
+Bg_Jya_Block
+0003  05004E98
+
+Obj_Warp2block
+0190  06000B30
+
+Not called ?
+0001  0403A278
+0001  0403A5F0
+007C  06007A70
+0081  060003A0
+0081  06000770
+0081  06000B40
+0082  06000A50
+0082  060015D0
+0144  06005EF8

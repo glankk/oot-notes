@@ -1,0 +1,44 @@
+static sram write structures
+800FC0B0 OSPiHandle
+800FC124 OSIOMesg
+800FC13C OSMesgQueue
+
+800040C0
+osEPiStartDma
+
+80003400
+osWritebackDCache?
+
+80004250
+osInvalDCache?
+
+800913E8
+sram write function
+sets up a message queue
+calls 80003400
+sends EPI dma message with osEPiStartDma
+osRecvMesg on the message queue (blocking)
+calls 80004250
+
+80091474 z64_Io
+calls 800913E8
+
+800905D4
+save function?
+80090694
+calls 80091474
+80090708
+calls 80091474
+
+8039CA1C
+start of critical path
+8039CA28
+branch to 8039CAA0
+8039CAD8
+call to 800905D4
+NOPing prevents save
+
+8011A5D0
+start of save
+8011A604
+rupees

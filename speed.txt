@@ -1,0 +1,149 @@
+rolling with hover boots, 12 frames spacing (perfect), child
+8.25
+7.9
+7.55
+7.2
+6.85
+7.2
+7.55
+7.9
+8.25
+8.25
+8.25
+8.25
+avg: 7.78(3)
+
+rolling, 12 frames spacing (perfect), child
+8.25
+0.25
+2.25
+4.25
+6.25
+8.25
+8.25
+8.25
+8.25
+8.25
+8.25
+8.25
+avg: 6.58(3)
+
+rolling, 16 frames spacing, child
+5.5
+5.5
+7.5
+8.25
+8.25
+8.25
+8.25
+8.25
+8.25
+8.25
+8.25
+8.25
+8.25
+0.25
+2.25
+4.25
+avg: 6.734375
+
+sidehopping with hover boots, 7 frames spacing (perfect), child
+8.15
+8.5
+8.5
+8.5
+8.5
+8.5
+8.5
+avg: 8.45
+
+sidehopping, 7 frames spacing (perfect), child
+7.5
+8.5
+8.5
+8.5
+8.5
+8.5
+8.5
+avg: 8.3(571428)
+
+backwalking, child
+max: 8.25
+
+backflipping, child
+max: 6
+
+rolling with hover boots, 12 frames spacing (perfect), adult
+8.25
+7.9
+7.55
+7.2
+6.85
+7.2
+7.55
+7.9
+8.25
+8.25
+8.25
+8.25
+avg: 7.78(3)
+
+rolling, 12 frames spacing (perfect), adult
+9
+1
+3
+5
+7
+9
+9
+9
+9
+9
+9
+9
+avg: 7.(3)
+
+rolling, 16 frames spacing, adult
+6
+6
+8
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+1
+3
+5
+avg: 7.4375
+
+sidehopping with hover boots, 7 frames spacing (perfect), adult
+8.15
+8.5
+8.5
+8.5
+8.5
+8.5
+8.5
+avg: 8.45
+
+sidehopping, 7 frames spacing (perfect), adult
+7.5
+8.5
+8.5
+8.5
+8.5
+8.5
+8.5
+avg: 8.3(571428)
+
+backwalking, adult
+max: 9
+
+backflipping, adult
+max: 6

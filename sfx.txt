@@ -1,0 +1,21 @@
+800C806C: sound effect function
+$a0: sound effect id
+$a1: unknown (0x801DAB14, 0x801E2004, 0x80104394, seem to be relative to owning actor)
+$a2: unknown (0x04)
+$a3: unknown (0x801043A0)
+w.[$sp + 0x0010]: unknown (0x801043A0)
+w.[$sp + 0x0014]: unknown (0x801043A8)
+  if b.[0x80124754 + ($a0 >> 12)] <> 0x00 then return
+  $v0 := 0x80122E90 + b.[0x80104360] * 0x0018
+  h.[$v0 + 0x0000] := $a0
+  w.[$v0 + 0x0004] := $a1
+  b.[$v0 + 0x0008] := $a2
+  w.[$v0 + 0x000C] := $a3
+  w.[$v0 + 0x0010] := w.[$sp + 0x0010]
+  w.[$v0 + 0x0014] := w.[$sp + 0x0014]
+  b.[0x80104360] += 0x01
+
+80104360  uint8_t sfx_write_pos
+80104364  uint8_t sfx_read_pos
+80104368  control point buffer pointers
+80122E90  sfx buf [0x18]

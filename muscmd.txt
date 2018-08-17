@@ -1,0 +1,17 @@
+801017FC  uint8_t   command_pos;
+8012B280  uint64_t  command_buf[0x100];
+
+800BB04C  push command $a0, w.[$a1]
+  800BB098  push command $a0, $a1
+  800BB0BC  push command $a0, $a1
+  800BB0E0  push command $a0, $a1 << 24
+  800BB110  push command $a0, $a1 << 16
+
+800BB548  push command 0xF9000000, $a0
+
+
+801043B0  uint8_t   seq_write_pos;
+801043B4  uint8_t   seq_read_pos;
+80124800  uint32_t  seq_buf[0x100];
+
+800CAA80  push seq $a0

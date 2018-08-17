@@ -1,0 +1,4 @@
+8005D3A4 huge function
+  sets ambient light at 8005F020
+    loop starts at 8005EFD8
+      a = b.[0x801D8F84] + h.[0x801D8F50]

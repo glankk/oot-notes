@@ -1,0 +1,107 @@
+
+typedef struct
+{
+  int8_t  dir[3];
+  uint8_t col[3];
+} z64_light1_t;
+
+typedef struct
+{
+  int16_t x;
+  int16_t y;
+  int16_t z;
+  uint8_t col[3];
+  int16_t intensity;
+} z64_light2_t;
+
+typedef union
+{
+  z64_light1_t  light1;
+  z64_light2_t  light2;
+} z64_lightn_t;
+
+typedef struct
+{
+  uint8_t       type;
+  z64_lightn_t  lightn;
+} z64_light_t;
+
+typedef struct z64_light_node_s z64_light_node_t;
+struct z64_light_node_s
+{
+  z64_light_t      *light;
+  z64_light_node_t *prev;
+  z64_light_node_t *next;
+};
+
+typedef struct
+{
+  z64_light_node_t *light_list;
+  uint8_t           ambient[3];
+  uint8_t           fog[3];
+  int16_t           fog_distance;
+  int16_t           draw_distance;
+} z64_lighting_t;
+
+typedef struct
+{
+  int8_t  numlights;
+  Lightsn lites;
+} z64_gbi_lights_t;
+
+ctxt + 0x07A8 (801C8C48): z64_lighting_t lighting;
+
+8006650C allocate z64_gbi_lights_t to poly_opa and fill ambient color
+$a0: z64_lighting_t *lighting
+$a1: z64_gfx_t *gfx
+$v0: z64_gbi_lights_t *
+  z64_gbi_lights_t *gbi_lights = gDisplayListAlloc(&gfx->poly_opa_d, sizeof(z64_gbi_lights_t));
+  gbi_lights->numlights = 0;
+  Ambient *a = &gbi_lights->lites.a;
+  a->l.col[0] = a->l.colc[0] = lighting->ambient[0];
+  a->l.col[1] = a->l.colc[1] = lighting->ambient[1];
+  a->l.col[2] = a->l.colc[2] = lighting->ambient[2];
+  return gbi_lights;
+
+80066298 add a list of light_nodes to a gbi_lights struct with respect to actor or NULL
+$a0: z64_gbi_lights_t *gbi_lights
+$a1: z64_light_node_t *light_node
+$a2: z64_actor_t *actor
+  while (light_node) {
+    z64_light_handler_t handler = z64_light_handlers[light_node->light->type];
+    handler(gbi_lights, &light_node->lightn, actor);
+    light_node = light_node->next;
+  }
+
+80065D60 set lights in poly_opa and poly_xlu to gbi_lights
+$a0: z64_gbi_lights_t *gbi_lights
+$a1: z64_gfx_t *gfx
+  gSPNumLights(gfx->poly_opa_p++, gbi_lights->numlights);
+  gSPNumLights(gfx->poly_xlu_p++, gbi_lights->numlights);
+  for (int i = 0; i < gbi_lights->numlights; ++i) {
+    gSPLight(gfx->poly_opa_p++, &gbi_lights->lites.l[i], i + 1);
+    gSPLight(gfx->poly_xlu_p++, &gbi_lights->lites.l[i], i + 1);
+  }
+  gSPLight(gfx->poly_opa_p++, &gbi_lights->lites.a, gbi_lights->numlights + 1);
+  gSPLight(gfx->poly_xlu_p++, &gbi_lights->lites.a, gbi_lights->numlights + 1);
+
+
+typedef void (*z64_light_handler_t)(z64_gbi_lights_t *gbi_lights, z64_lightn_t *lightn, z64_actor_t *actor);
+
+800F1B40: z64_light_handler_t z64_light_handlers[3];
+
+80065ED4 z64_light_handler_t, add z64_light2_t to z64_gbi_lights_t
+  if (!actor)
+    return;
+  ...
+
+80066230 z64_light_handler_t, add z64_light1_t to z64_gbi_lights_t
+  if (gbi_lights->numlights >= 7)
+    return;
+  Light *light = &gbi_lights->lites.l[gbi_lights->numlights++];
+  light->l.col[0] = light->l.colc[0] = light1->col[0];
+  light->l.col[1] = light->l.colc[1] = light1->col[1];
+  light->l.col[2] = light->l.colc[2] = light1->col[2];
+  light->l.dir[0] = light1->dir[0];
+  light->l.dir[1] = light1->dir[1];
+  light->l.dir[2] = light1->dir[2];

@@ -1,0 +1,57 @@
+801C84A0 ctxt
+
+800885E0 - 80088A74 jabu scene config
+poly_opa_disp_p 8017CBA8 - 8017CBD0
+  DB060020 801887D8
+  DB06002C 801887A8
+  E7000000 00000000
+  FB000000 80808080
+  DB060034 80188768
+poly_opa_disp_e 80188808 - 80188768
+  matrix (0x0040 bytes)
+  dlist (0x0028)
+    E8000000 00000000
+    F2000043 0007C13F
+    E8000000 00000000
+    F2000043 0107C13F
+    DF000000 00000000
+  ? (0x0008 bytes)
+    B7B7B7DE 138B0001
+  dlist (0x0028 bytes)
+    E8000000 00000000
+    F206F05E 000EB0DA
+    E8000000 00000000
+    F201005E 0108C0DA
+    DF000000 00000000
+  ? (0x0008 bytes)
+poly_xlu_disp_p 80188A10 - 80188A20
+    E7000000 00000000
+    FB000000 80808080
+poly_xlu_disp_e 8018C958 - 8018C958
+
+
+800FBE8C,
+800FBE90,
+800FBE94
+  written to at various points, seems to be static variables
+  isolating repairs vertex animation
+80108A74,
+80108A78,
+80108A7C,
+80108A80,
+80108A84,
+80108A88,
+80108A8C?,
+80108A90?,
+80108A94,
+80108A98
+  written to at various points, seems to be static variables
+  related to matrix production
+8011EEC8 - 8011F563 stack
+80176382 - 801763E7 dlist buffer
+801C8641 - 801C8657 ctxt + 0x01A1
+  written to at various points
+  no effects were observed when isolating
+802354C1 - 802354FF matrix stack, animated vertices
+  written to by 800AA8FC
+  called at 80088A30

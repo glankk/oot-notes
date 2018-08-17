@@ -1,0 +1,114 @@
+description                   start     end       size
+--------------------------------------------------------
+makerom                       80000000  80000460  460
+boot                          80000460  80006830  63D0
+                              80006830  80006850  20
+OSThread idle                 80006850  800069FC  1AC
+??                            800069FC  8000B140  4744
+dmadata                       8000B140  800110A0  5F60
+code                          800110A0  80114DD0  103D30
+??                            80114DD0  80114DE8  18
+unk particle 1                80114DE8  801152AC  4C4
+??                            801152AC  8011A0E8  4E3C
+unk particle 2                8011A0E8  8011A5AC  4C4
+??                            8011A5AC  8011A5D0  24
+file                          8011A5D0  8011BA00  1430
+                              8011BA00  8011C000  600
+                              8011C000  8011CBC0  BC0
+??                            8011CBC0  8011D318  758
+OSThread sched                8011D318  8011D4C4  1AC
+??                            8011D4C4  8011D500  3C
+input ctxt                    8011D500  8011D968  468
+{
+  ??                          8011D500  8011D580  80
+  OSThread padmgr             8011D580  8011D72C  1AC
+  ??                          8011D72C  8011D968  23C
+}
+??                            8011D968  8011DA00  98
+OSThread irqmgr               8011DA00  8011DBAC  1AC
+??                            8011DBAC  8011DBE8  3C
+OSThread graph                8011DBE8  8011DD94  1AC
+??                            8011DD94  8011DD98  4
+graph stack                   8011DD98  8011F598  1800
+{
+  gfx ctxt                    8011F290  8011F588  2F8
+  ??                          8011F588  8011F598  10
+}
+sched stack                   8011F598  8011F998  400
+audio stack                   8011F998  80120198  800
+padmgr stack                  80120198  80120698  500
+irqmgr stack                  80120698  80120B98  500
+??                            80120B98  80120D60  1C8
+OSThread audio                80120D60  80120F0C  1AC
+??                            80120F0C  80121290  384
+OSThread fault                80121290  8012143C  1AC
+??                            8012143C  80125630  41F4
+audio ctxt                    80125630  8012BA80  6450
+??                            8012BA80  8012BE40  3C0
+zbuf                          8012BE40  80151640  25800
+??                            80151640  8016A640  19000
+disp buf 0                    8016A640  8017CA50  12410
+disp buf 1                    8017CA50  8018EE60  12410
+audio space                   8018EE60  801C6D60  37F00
+{
+  audio buf 0                 8018EE60  8018F960  B00
+  audio buf 1                 8018F960  80190460  B00
+  audio buf 2                 80190460  80190F60  B00
+  /* this stuff is all wrong (lifted from cloudmodding) */
+  ??                          80190F60  801A7944  169E4
+                              801A7944  801A7D40  3FC
+                              801A7D40  801AAD40  3000
+                              801AAD40  801ADD50  3010
+                              801ADD50  801ADE50  100
+                              801ADE50  801B15E0  3790
+                              801B15E0  801B1A60  480
+                              801B1A60  801B1BE0  180
+  audiotable                  801B1BE0  801C0560  E980
+  {
+    ??                        801B1BE0  801B2060  480
+    ??                        801B2060  801B2500  4A0
+    ??                        801B2500  801B2760  260
+    ??                        801B2760  801C0560  DE00
+  }
+  ??                          801C0560  801C1BD0  1670
+  ??                          801C1BD0  801C2CD0  1100
+  ??                          801C2CD0  801C43D0  1700
+  ??                          801C43D0  801C4420  50
+  ??                          801C4420  801C5240  E20
+  ??                          801C5240  801C52C0  80
+  ??                          801C52C0  801C54A0  1E0
+  ??                          801C54A0  801C59A0  500
+  ??                          801C59A0  801C6D60  13C0
+}
+??                            801C6D60  801C6E60  100
+main arena                    801C6E60  803B5000  1EE1A0
+{
+  gameinfo node               801C6E60  801C8470  1610
+  {
+    header                    801C6E60  801C6E90  30
+    gameinfo                  801C6E90  801C8470  15E0 (15D4 used?)
+  }
+  ctxt node                   801C8470  801DA9C0  12550
+  {
+    header                    801C8470  801C84A0  30
+    ctxt                      801C84A0  801DA9C0  12520 (12518 used?)
+  }
+  game data node              801DA9C0  803AF190  1D47A0
+  {
+    header                    801DA9C0  801DA9F0  30
+    ??                        801DA9F0  801DAA00  10
+    game arena                801DAA00  80121200
+    matrix stack              80121200
+
+    scene file                *         80384980
+    particles                 80384980  80386960  1FE0
+    ??                        80386960  803AF190  28830
+  }
+  free node                   803AF190  803B5000  5E70
+  {
+    header                    803AF190  803AF1C0  30
+    free space                803AF1C0  803B5000  5E40
+  }
+}
+cbuf 0                        803B5000  803DA800  25800
+cbuf 1                        803DA800  80400000  25800

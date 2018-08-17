@@ -1,0 +1,43 @@
+801D9C44 obj_ctxt
+
+80081688 check if object in slot $a1 is empty
+
+800812F0 load object?
+
+80081740 mark object for loading ?
+$a0: pointer to object context
+$a1: index in object list
+$a2: object id
+  $v1 := $a0 + $a1 * 0x44
+  h.[$v1 + 0x000C] := -$a2
+  w.[$v1 + 0x0014] := 0
+  $a3 := 0x800F8FF8 + $a2 * 8
+  $t2 := w.[$a3 + 0x0004]
+  $t3 := w.[$a3 + 0x0000]
+  $t4 := w.[$v1 + 0x0010]
+  $t1 := $t4 + $t2 - $t3
+  $t1 := $t1 + 0x000F
+  $v0 := $t1 & 0xFFFFFFF0
+
+80081530 load objects marked for loading ?
+  called once per frame
+
+0x801D9C44 void     *obj_space_start;
+0x801D9C48 void     *obj_space_end;
+0x801D9C4C uint8_t   slots_filled;
+0x801D9C4D uint8_t   ?;
+0x801D9C4E uint8_t   ?;
+0x801D9C4F uint8_t   ?;
+0x801D9C50:
+struct z64_mem_obj
+{
+  int16_t       object_no;
+  void         *object;
+  z64_getfile_t getfile;
+  OSMesgQueue   load_mq;
+  OSMesg        load_m;
+} objects[0x0013];
+
+w.[0x8011A5D4] file age
+b.[0x801DA288] ctxt age
+h.[0x800FC538] link object no

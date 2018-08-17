@@ -1,0 +1,16 @@
+h.[0x801D8DE8] (ctxt + 0x10948): pause screen index
+  starts at zero
+  on pause:
+    if h.[0x801C7684] = 0 then
+      h.[0x801D8DE8] := h.[0x800F15B0 + h.[0x801D8DE8] * 2]
+    else
+      h.[0x801D8DE8] := h.[0x800F15D8 + h.[0x801D8DE8] * 2]
+
+h.[0x801C7684] (gameinfo + 0x07F4): start icon dd
+  starts at zero
+  on pause:
+    h.[0x801C7684] := (word)(1024. / ((single)(h.[0x801C7686 + b.[0x8011B9D9] * 2]) / 100.))
+
+h.[0x801C7686] (gameinfo + 0x07F6): start icon scale
+
+b.[0x8011B9D9] (file + 0x1409): language

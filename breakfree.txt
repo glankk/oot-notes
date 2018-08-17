@@ -1,0 +1,62 @@
+cutscene state
+b.[ctxt + 0x1D6C] := 0x03
+
+link state
+h.[ctxt + 0x04AC] := 0x0000
+
+
+
+
+
+darunia
+begin
+8038C7C0
+8038B0AC
+8038C78C
+end
+80048EB8
+8038C7C0
+80392C34
+
+no darunia
+8038B0AC
+8038C78C
+8038C7C0
+
+
+03E00008
+jr $ra
+
+
+
+state func ptr
+803A7E90 locked
+803A91B0 free
+
+locked @803AB6E4, 803AB82C
+free @803AB6DC
+
+  $a0: 0x801DAA30 (link)
+  $s0 := $a0
+  $v0 := b.[$s0 + 434]
+  $t6 := b.[$s0 + 435]
+  if $t6 = $v1 then goto 0x803A96F0
+  $t2 := 0x803AB6A0
+  $t1 := $v0 * 8
+  $a0 := ctxt
+  $a1 := 0x00000000
+  $a2 := 0x00000000
+  $a3 := $t1 + $t2
+
+
+0x800218EC break free
+$a0: ctxt
+$a1: link
+$a2: 7
+$t6 := w.[$a0 + 0x1C44]
+b.[$t6 + 0x0434] := $a2
+w.[$t6 + 0x0438] := $a1
+h.[$t6 + 0x045A] := 0x0001
+
+
+h.[0x801C894C] = 0x0000

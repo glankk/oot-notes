@@ -1,0 +1,59 @@
+
+typedef struct z64_part_s z64_part_t;
+
+typedef int32_t (*z64_part_ctor_t)(z64_ctxt_t *ctxt, int part_index, z64_part_t *part, void *cdata);
+typedef void    (*z64_part_proc_t)(z64_ctxt_t *ctxt, int part_index, z64_part_t *part);
+
+struct z64_part_s
+{
+  z64_xyzf_t        pos;          /* 0x0000 */
+  z64_xyzf_t        speed;        /* 0x000C */
+  z64_xyzf_t        accel;        /* 0x0018 */
+  z64_part_proc_t  *main_proc;    /* 0x0024 */
+  z64_part_proc_t  *draw_proc;    /* 0x0028 */
+  /* begin particle-defined fields */
+  z64_xyzf_t         data_xyz;    /* 0x002C */
+  Gfx              *disp;         /* 0x0038 */
+  int32_t           data_32;      /* 0x003C */
+  int16_t           data_16[14];  /* 0x0040 */
+  /* end particle-defined fields */
+  int16_t           time;         /* 0x005C */
+  /* lower value means more important */
+  uint8_t           priority;     /* 0x005E */
+  uint8_t           part_id;      /* 0x005F */
+};
+
+800E7B40  z64_part_t *part_space; /* 80384980 */
+800E7B44  int32_t     part_index;
+800E7B48  int32_t     part_max;
+
+8001B468  void z64_CreateParticle(z64_ctxt_t *ctxt, uint8_t part_id, uint8_t priority, void *cdata);
+
+
+/* spark particle */
+
+typedef struct
+{
+  uint8_t r;
+  uint8_t g;
+  uint8_t b;
+  uint8_t a;
+} z64_rgba_t;
+
+/* spark cdata */
+{
+  /* actor to attach to, only bomb type actors have an effect */
+  z64_actor_t  *actor;
+  z64_xyzf_t    pos;
+  z64_xyzf_t    speed;
+  z64_xyzf_t    accel;
+  z64_rgba_t    c1;
+  z64_rgba_t    c2;
+  int16_t       scale;
+  int16_t       scale_i;
+  /* boolean */
+  uint8_t       attach_mode;
+}
+
+8001CB58  void z64_CreateSpark(z64_ctxt_t *ctxt, z64_actor_t *actor, z64_xyzf_t *pos, z64_xyzf_t *speed, z64_xyzf_t *accel,
+                               z64_rgba_t *c1, z64_rgba_t *c2, int16_t scale, int16_t scale_i, uint8_t attach_mode);

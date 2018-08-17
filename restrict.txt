@@ -1,0 +1,33 @@
+/* 0x00-0xFE = enabled, 0xFF = restricted */
+bz.[file + 0x13E2]   (8011B9B2)  B restriction
+bz.[file + 0x13E3]   (8011B9B3)  Cl restriction
+bz.[file + 0x13E4]   (8011B9B4)  Cd restriction
+bz.[file + 0x13E5]   (8011B9B5)  Cr restriction
+
+ctxt + 0x10752  (801D8BF2)  restriction flags
+
+8006E340  function start
+8006EFA4  fw on button test
+8006EFAC  disable fw
+
+80078354  function call
+/* condition tests */
+801D887C  uint8_t   textbox state 1
+801D8EC0  uint16_t  game over state
+
+/* 8038A6E8 */
+/* returns the item on the specified action button, or 0xFF if the button is restricted */
+/* special case (meant for bombchu minigame):
+    if b.[ctxt + 0x11E5D]
+      > 0 then return 0x09 (bombchu)
+      < 0 then return 0xFF (nothing)
+      = 0 function normally
+*/
+int get_restricted_button_item(z64_game *game, int button_index);
+
+
+8005B860  pause check function
+8009BC00  function call
+
+/* other addresses */
+801D8DD4  uint16_t  pause state

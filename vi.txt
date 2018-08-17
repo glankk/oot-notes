@@ -1,0 +1,17 @@
+oot-1.0-j
+uses OS_VI_NTSC_LAN1 (2)
+0x800063C0: osViModeNtscLan1
+
+oot-1.0-e
+uses OS_VI_FPAL_LAN1 (44)
+0x80006950: osViModeNtscLan1
+0x80006A00: osViModeFpalLan1
+0x800082F0: current mode?
+0x8000063C: set mode?
+
+oot-1.0-e to ntsc hack:
+  ; change mode from OS_VI_FPAL_LAN1 to OS_VI_NTSC_LAN1
+  w.[0x800006AC] (rom 0x000012AC) := 0x27396950 ; addiu $t9, $t9, 0x6950
+  ; prevent changes to yScale
+  w.[0x800055F0] (rom 0x000061F0) := 0x00000000 ; nop
+  w.[0x8000560C] (rom 0x0000620C) := 0x00000000 ; nop

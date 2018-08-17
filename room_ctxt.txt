@@ -1,0 +1,43 @@
+
+typedef struct
+{
+  char            unk_00_;
+  int8_t          n_entries;
+  uint32_t        seg_start;
+  uint32_t        seg_end;
+} z64_sr_mesh_t;
+
+typedef struct
+{
+  int8_t          index;
+  char            pad_00_;
+  uint8_t         bhv_z;
+  uint8_t         bhv_x;
+  uint8_t         echo;
+  int8_t          show_invis_act;
+  char            pad_01_[0x0002];
+  z64_sr_mesh_t  *mesh_hdr;
+  void           *file;
+  char            pad_02_[0x0004];
+} z64_room_t;
+
+typedef struct
+{
+  /* room info */
+  z64_room_t      rooms[2];
+  void           *room_space_start;
+  void           *room_space_end;
+  /* loading info */
+  int8_t          room_loading[2];
+  void           *load_ptr;
+  z64_getfile_t   load_getfile;
+  OSMesgQueue     load_notify_mq;
+  OSMesg          load_notify_msg;
+  /* may also be used for other things, not sure */
+  /* handled by the scene config for lost woods */
+  int16_t         cojiro_sfx_played;
+  int16_t         cojiro_sfx_timer;
+  /* transition actor list */
+  uint8_t         n_tnsn;
+  void           *tnsn_list;
+} z64_room_ctxt_t;

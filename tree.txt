@@ -1,0 +1,6 @@
+801C84A0 ctxt
+8011F290 gfx
+8011F538 overlay
+
+800A1688 called from inside context loop
+  finalizes dlists

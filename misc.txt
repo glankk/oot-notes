@@ -1,0 +1,73 @@
+801E2234
+load trigger xyz
+
+
+8025144C
+load trigger update routine (?)
+8025148C -> 80021574
+load trigger collision check
+80251538
+load room index
+
+80080C98
+unload room proc
+80080CB0
+mark room as unloaded (?)
+80080CB4
+unload textures (seems to nullify pointer to dlist)
+
+802515F8
+seems to load rooms that are marked as unloaded
+jumps to 80080A3C
+
+
+
+80080A3C
+room loader (?)
+calls 80004220
+loads function pointer at 80121220 and calls it if nonzero
+calls 80000D28
+
+80004220
+some sort of data structure setter / initializer
+$a0: pointer to structure
+{
+  word 0x80006330
+  word 0x80006330
+  word 0x00000000
+  word 0x00000000
+  word $a2
+  word $a1
+}
+
+80000D28
+also does stuff if 80121220 is nonzero
+calls 80001E20, which then calls lots of things
+
+801C6FA0
+halfword; decides the number of VI's per frame
+
+8008C000
+set link's animation
+$a0: unknown pointer
+$a1: pointer to animation structure
+{
+  byte    unknown
+  byte    unknown
+  byte[2] unknown
+  word    unknown pointer
+  word    segment address of animation
+  word    unknown
+  float   anim_duration (seems to be how long to stay in the current animation)
+  float   anim_length (seems to be length of animation)
+  float   anim_pos
+  float   anim_speed
+  ...?
+}
+$a2: unknown (bank address?)
+$a3: animation speed (float)
+further arguments on stack
+
+8008BF00
+animate link
+anim_pos = anim_pos + (anim_speed * (hw.[[0x8011BA00] + 0x0110] * 0.5))

@@ -1,0 +1,19 @@
+last node
+802179C0
+heap end?
+80218060
+
+ctxt heap info
+801C8514
+
+heap size
+001D4790
+heap start
+801DAA00
+heap end
+803AF190
+
+8011BEF0 pointer to first node
+801DAA00 first node
+
+800CE060 malloc?

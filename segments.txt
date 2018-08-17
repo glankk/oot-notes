@@ -1,0 +1,23 @@
+
+80000460      boot
+{
+  80000460    text
+  800060B0    data ?
+  80006830    makerom bss ?
+  8000B140    bss
+  {
+    8000B140  dmadata
+    800110A0  code
+    8012BE30  ??
+    8012BE40  zbuf
+  }
+  80400000    end
+}
+
+800110A0      code
+{
+  800110A0    text
+  800E2FC0    data ?
+  80114DD0    bss
+  8012BE30    end
+}

@@ -1,0 +1,289 @@
+$s3:  800E7AF0
+
+8001ACD8  update particles
+$a0:  ctxt
+w.[$s3 + 0x000C] (z64_dot_fx_t *fx)
+w.[$s3 + 0x0020] (z64_trail_fx_t *fx)
+w.[$s3 + 0x0048] (z64_spark_fx_t *fx)
+
+8001ABDC  draw particles
+$a0:  gfx
+w.[$s3 + 0x0010] (z64_dot_fx_t *fx, z64_gfx_t *gfx)
+w.[$s3 + 0x0024] (z64_trail_fx_t *fx, z64_gfx_t *gfx)
+w.[$s3 + 0x004C] (z64_spark_fx_t *fx, z64_gfx_t *gfx)
+
+/* special particle effects */
+typedef struct
+{
+  /* velocity */
+  float             vel_x;                    /* 0x0000 */
+  float             vel_y;                    /* 0x0004 */
+  float             vel_z;                    /* 0x0008 */
+  /* position */
+  float             x;                        /* 0x000C */
+  float             y;                        /* 0x0010 */
+  float             z;                        /* 0x0014 */
+  /* integer xyz velocity-position pair, unused ? */
+  int16_t           h18;                      /* 0x0018 */
+  int16_t           h1A;                      /* 0x001A */
+  int16_t           h1C;                      /* 0x001C */
+  int16_t           h1E;                      /* 0x001E */
+  int16_t           h20;                      /* 0x0020 */
+  int16_t           h22;                      /* 0x0022 */
+                                              /* 0x0024 */
+} z64_dot_cp_t;
+
+typedef struct
+{
+  /* initial position */
+  int16_t           x;                        /* 0x0000 */
+  int16_t           y;                        /* 0x0002 */
+  int16_t           z;                        /* 0x0004 */
+  char              pad_00_[0x0002];          /* 0x0006 */
+  /* number of active control points */
+  uint32_t          n_cp;                     /* 0x0008 */
+  /* control points */
+  z64_dot_cp_t      cp[32];                   /* 0x000C */
+  /* initial linear velocity */
+  float             vel;                      /* 0x048C */
+  /* vertical acceleration */
+  float             accel_y;                  /* 0x0490 */
+  /* initial number of controls points (n_cp_a * n_cp_b + 2) */
+  uint32_t          n_cp_a;                   /* 0x0494 */
+  uint32_t          n_cp_b;                   /* 0x0498 */
+  /* primary color 1 */
+  uint8_t           c1r1;                     /* 0x049C */
+  uint8_t           c1g1;                     /* 0x049D */
+  uint8_t           c1b1;                     /* 0x049E */
+  uint8_t           c1a1;                     /* 0x049F */
+  /* secondary color 1 */
+  uint8_t           c2r1;                     /* 0x04A0 */
+  uint8_t           c2g1;                     /* 0x04A1 */
+  uint8_t           c2b1;                     /* 0x04A2 */
+  uint8_t           c2a1;                     /* 0x04A3 */
+  /* tertiary color 1 */
+  uint8_t           c3r1;                     /* 0x04A4 */
+  uint8_t           c3g1;                     /* 0x04A5 */
+  uint8_t           c3b1;                     /* 0x04A6 */
+  uint8_t           c3a1;                     /* 0x04A7 */
+  /* quaternary color 1 */
+  uint8_t           c4r1;                     /* 0x04A8 */
+  uint8_t           c4g1;                     /* 0x04A9 */
+  uint8_t           c4b1;                     /* 0x04AA */
+  uint8_t           c4a1;                     /* 0x04AB */
+  /* primary color 2 */
+  uint8_t           c1r2;                     /* 0x04AC */
+  uint8_t           c1g2;                     /* 0x04AD */
+  uint8_t           c1b2;                     /* 0x04AE */
+  uint8_t           c1a2;                     /* 0x04AF */
+  /* secondary color 2 */
+  uint8_t           c2r2;                     /* 0x04B0 */
+  uint8_t           c2g2;                     /* 0x04B1 */
+  uint8_t           c2b2;                     /* 0x04B2 */
+  uint8_t           c2a2;                     /* 0x04B3 */
+  /* tertiary color 2 */
+  uint8_t           c3r2;                     /* 0x04B4 */
+  uint8_t           c3g2;                     /* 0x04B5 */
+  uint8_t           c3b2;                     /* 0x04B6 */
+  uint8_t           c3a2;                     /* 0x04B7 */
+  /* quaternary color 2 */
+  uint8_t           c4r2;                     /* 0x04B8 */
+  uint8_t           c4g2;                     /* 0x04B9 */
+  uint8_t           c4b2;                     /* 0x04BA */
+  uint8_t           c4a2;                     /* 0x04BB */
+  /* elapsed time and total duration */
+  int32_t           time;                     /* 0x04BC */
+  int32_t           duration;                 /* 0x04C0 */
+                                              /* 0x04C4 */
+} z64_dot_fx_t;
+
+typedef struct
+{
+  uint8_t           active;                   /* 0x0000 */
+  uint8_t           b1;                       /* 0x0001 */
+  uint8_t           b2;                       /* 0x0002 */
+  char              pad_00_[0x0001];          /* 0x0003 */
+  z64_dot_fx_t      fx;                       /* 0x0004 */
+                                              /* 0x04C8 */
+} z64_dot_t;
+
+typedef struct
+{
+  /* state ? */
+  int32_t           state;                    /* 0x0000 */
+  /* elapsed time */
+  int32_t           time;                     /* 0x0004 */
+  /* point 1 */
+  int16_t           p1x;                      /* 0x0008 */
+  int16_t           p1y;                      /* 0x000A */
+  int16_t           p1z;                      /* 0x000C */
+  /* point 2 */
+  int16_t           p2x;                      /* 0x000E */
+  int16_t           p2y;                      /* 0x0010 */
+  int16_t           p2z;                      /* 0x0012 */
+  /* flags ? */
+  uint16_t          flags;                    /* 0x0014 */
+  char              pad_00_[0x0002];          /* 0x0016 */
+                                              /* 0x0018 */
+} z64_trail_cp_t;
+
+typedef struct
+{
+  /* control points */
+  z64_trail_cp_t    cp[16];                   /* 0x0000 */
+  /* interpolation mode ? */
+  uint32_t          ipn_mode;                 /* 0x0180 */
+  /* parameter for interpolation mode 4 */
+  float             f184;                     /* 0x0184 */
+  /* flags ? */
+  uint16_t          h188;                     /* 0x0188 */
+  /* counter increment, counter, what for ? */
+  int16_t           h18A;                     /* 0x018A */
+  int16_t           h18C;                     /* 0x018C */
+  /* point 1 starting color */
+  uint8_t           p1r1;                     /* 0x018E */
+  uint8_t           p1g1;                     /* 0x018F */
+  uint8_t           p1b1;                     /* 0x0190 */
+  uint8_t           p1a1;                     /* 0x0191 */
+  /* point 2 starting color */
+  uint8_t           p2r1;                     /* 0x0192 */
+  uint8_t           p2g1;                     /* 0x0193 */
+  uint8_t           p2b1;                     /* 0x0194 */
+  uint8_t           p2a1;                     /* 0x0195 */
+  /* point 1 ending color */
+  uint8_t           p1r2;                     /* 0x0196 */
+  uint8_t           p1g2;                     /* 0x0197 */
+  uint8_t           p1b2;                     /* 0x0198 */
+  uint8_t           p1a2;                     /* 0x0199 */
+  /* point 2 ending color */
+  uint8_t           p2r2;                     /* 0x019A */
+  uint8_t           p2g2;                     /* 0x019B */
+  uint8_t           p2b2;                     /* 0x019C */
+  uint8_t           p2a2;                     /* 0x019D */
+  /* number of active control points */
+  uint8_t           n_cp;                     /* 0x019E */
+  /* control point duration */
+  uint8_t           duration;                 /* 0x019F */
+  /* unknown */
+  uint8_t           b1A0;                     /* 0x01A0 */
+  /* render mode */
+  /* 0:   simple */
+  /* 1:   simple with alternate colors */
+  /* 2+:  smooth */
+  uint8_t           mode;                     /* 0x01A1 */
+  /* alternate colors */
+  /* inner color */
+  uint8_t           m1r1;                     /* 0x01A2 */
+  uint8_t           m1g1;                     /* 0x01A3 */
+  uint8_t           m1b1;                     /* 0x01A4 */
+  uint8_t           m1a1;                     /* 0x01A5 */
+  /* outer color */
+  uint8_t           m1r2;                     /* 0x01A6 */
+  uint8_t           m1g2;                     /* 0x01A7 */
+  uint8_t           m1b2;                     /* 0x01A8 */
+  uint8_t           m1a2;                     /* 0x01A9 */
+  char              pad_00_[0x0002];          /* 0x01AA */
+                                              /* 0x01AC */
+} z64_trail_fx_t;
+
+typedef struct
+{
+  uint8_t           active;                   /* 0x0000 */
+  char              pad_00_[0x0003];          /* 0x0001 */
+  z64_trail_fx_t    fx;                       /* 0x0004 */
+                                              /* 0x01B0 */
+} z64_trail_t;
+
+typedef struct
+{
+  /* initial velocity */
+  float             vel;                      /* 0x0000 */
+  /* point 1 velocity and distance */
+  float             p1v;                      /* 0x0004 */
+  float             p1d;                      /* 0x0008 */
+  /* point 2 velocity and distance */
+  float             p2v;                      /* 0x000C */
+  float             p2d;                      /* 0x0010 */
+  /* orientation */
+  int16_t           yaw;                      /* 0x0014 */
+  int16_t           pitch;                    /* 0x0016 */
+                                              /* 0x0018 */
+} z64_spark_cp_t;
+
+typedef struct
+{
+  /* control points */
+  z64_spark_cp_t    cp[16];                   /* 0x0000 */
+  /* number of active control points */
+  uint8_t           n_cp;                     /* 0x0180 */
+  char              pad_00_[0x0001];          /* 0x0181 */
+  /* position */
+  int16_t           x;                        /* 0x0182 */
+  int16_t           y;                        /* 0x0184 */
+  int16_t           z;                        /* 0x0186 */
+  /* primary color 1 */
+  uint8_t           c1r1;                     /* 0x0188 */
+  uint8_t           c1g1;                     /* 0x0189 */
+  uint8_t           c1b1;                     /* 0x018A */
+  uint8_t           c1a1;                     /* 0x018B */
+  /* secondary color 1 */
+  uint8_t           c2r1;                     /* 0x018C */
+  uint8_t           c2g1;                     /* 0x018D */
+  uint8_t           c2b1;                     /* 0x018E */
+  uint8_t           c2a1;                     /* 0x018F */
+  /* primary color 2 */
+  uint8_t           c1r2;                     /* 0x0190 */
+  uint8_t           c1g2;                     /* 0x0191 */
+  uint8_t           c1b2;                     /* 0x0192 */
+  uint8_t           c1a2;                     /* 0x0193 */
+  /* secondary color 2 */
+  uint8_t           c2r2;                     /* 0x0194 */
+  uint8_t           c2g2;                     /* 0x0195 */
+  uint8_t           c2b2;                     /* 0x0196 */
+  uint8_t           c2a2;                     /* 0x0197 */
+  /* primary color 3 */
+  uint8_t           c1r3;                     /* 0x0198 */
+  uint8_t           c1g3;                     /* 0x0199 */
+  uint8_t           c1b3;                     /* 0x019A */
+  uint8_t           c1a3;                     /* 0x019B */
+  /* secondary color 3 */
+  uint8_t           c2r3;                     /* 0x019C */
+  uint8_t           c2g3;                     /* 0x019D */
+  uint8_t           c2b3;                     /* 0x019E */
+  uint8_t           c2a3;                     /* 0x019F */
+  /* deceleration of point velocities */
+  float             decel;                    /* 0x01A0 */
+  char              unk_00_[0x0004];          /* 0x01A4 */
+  /* initial velocity range */
+  float             vel_max;                  /* 0x01A8 */
+  float             vel_min;                  /* 0x01AC */
+  /* total duration and elapsed time */
+  uint8_t           duration;                 /* 0x01B0 */
+  uint8_t           time;                     /* 0x01B1 */
+  /* light */
+  z64_light_t       light;                    /* 0x01B2 */
+  z64_light_node_t *light_node;               /* 0x01C0 */
+  /* reduces light intensity by half each frame when set to 1 */
+  int32_t           decay;                    /* 0x01C4 */
+                                              /* 0x01C8 */
+} z64_spark_fx_t;
+
+typedef struct
+{
+  uint8_t           active;                   /* 0x0000 */
+  uint8_t           b1;                       /* 0x0001 */
+  uint8_t           b2;                       /* 0x0002 */
+  char              pad_00_[0x0001];          /* 0x0003 */
+  z64_spark_fx_t    fx;                       /* 0x0004 */
+                                              /* 0x01CC */
+} z64_spark_t;
+
+/* 80114DE0 */
+typedef struct
+{
+  z64_game_t       *game;                     /* 0x0000 */
+  z64_dot_t         dots[3];                  /* 0x0004 */
+  z64_trail_t       trails[25];               /* 0x0E5C */
+  z64_spark_t       sparks[3];                /* 0x388C */
+                                              /* 0x3DF0 */
+} z64_pfx_t;

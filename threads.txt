@@ -1,0 +1,39 @@
+80000C20
+80051D54
+
+$sp: 8011F160
+1c($sp): 800A1408
+
+80004D50 osGetCount
+80001F70 osStopThread
+80002F20 osCreateThread
+80005EC0 osStartThread
+80003CA0 osGetThreadId
+
+800A1408 yield?
+80002090 switch thread?
+
+8011F1C4 read by 800A1410
+
+80002D1C eret
+
+80006340 pointer to current thread
+80006360 uint32_t c0_sr;
+
+80006850 01 idle
+80007220 03 main
+80007DD8 18 dmamgr
+80008A60 00 pimgr
+80009F20 00 vimgr
+8011D318 05 sched
+8011D580 07 padmgr
+8011DA00 19 irqmgr
+8011DBE8 04 graph
+80120D60 10 audio
+80121290 02 fault
+
+
+80009E80 uint32_t count_hi;
+80009E84 uint32_t count_lo;
+80009E88 uint32_t count;
+80009E8C uint32_t check_count;

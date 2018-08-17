@@ -1,0 +1,36 @@
+800F7D24  int16_t number of active camera shakes
+
+/* 8011BF60 */
+typedef struct
+{
+  int16_t           h0;                       /* 0x0000 */
+  int16_t           h2;                       /* 0x0002 */
+  /* camera context ? */
+  void             *p4;                       /* 0x0004 */
+  /* 0: none */
+  /* 1: sine y, random x */
+  /* 2: random y, random x */
+  /* 3: ? */
+  /* 4: ? */
+  /* 5: sine y, sine x */
+  /* 6: sine y, random x */
+  int32_t           type;                     /* 0x0008 */
+  /* vertical and horizontal magnitude */
+  int16_t           mag_y;                    /* 0x000C */
+  int16_t           mag_x;                    /* 0x000E */
+  int16_t           h10;                      /* 0x0010 */
+  int16_t           h12;                      /* 0x0012 */
+
+  int16_t           h14;                      /* 0x0014 */
+  int16_t           h16;                      /* 0x0016 */
+
+  int16_t           h1A;                      /* 0x001A */
+  /* 0:  world-relative movement */
+  /* 1+: camera-relative movement */
+  int16_t           relative;                 /* 0x001C */
+  /* time left */
+  int16_t           time;                     /* 0x001E */
+  int16_t           h20;                      /* 0x0020 */
+  char              pad_00_[0x0002];          /* 0x0022 */
+                                              /* 0x0024 */
+} z64_camera_shake_t

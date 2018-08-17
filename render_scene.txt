@@ -1,0 +1,9 @@
+8009C310 calls 8009A574
+
+8009A574
+  8009C684 skybox?
+  8009C704 lighting?
+  8009C718 lighting/shading?
+  8009C740 scene config?
+  8009C758 scene?
+  8009C838 actors

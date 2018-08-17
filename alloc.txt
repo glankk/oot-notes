@@ -1,0 +1,235 @@
+
+typedef struct z64_arena      z64_arena_t;
+typedef struct z64_arena_node z64_arena_node_t;
+
+struct z64_arena
+{
+  z64_arena_node_t *first_node;
+  void             *start;
+  uint32_t          size;
+  char              unk_00_[0x0004];
+};
+
+struct z64_arena_node
+{
+  uint16_t          magic;
+  uint16_t          free;
+  uint32_t          size;
+  z64_arena_node_t *next;
+  z64_arena_node_t *prev;
+  char             *filename;
+  int32_t           line;
+  OSId              thread_id;
+  z64_arena_t      *arena;
+  uint32_t          count_hi;
+  uint32_t          count_lo;
+  char              pad_00_[0x0008];
+  char              data[];
+};
+
+typedef struct
+{
+  int32_t           part_id;
+  void             *ctor;
+} z64_part_info_t;
+
+typedef struct
+{
+  int16_t           actor_id;
+  uint8_t           actor_type;
+  uint8_t           room_index;
+  uint32_t          flags;
+  int16_t           object_id;
+  uint32_t          inst_size;
+  void             *ctor;
+  void             *dtor;
+  void             *main_proc;
+  void             *draw_proc;
+} z64_actor_info_t;
+
+typedef struct
+{
+  uint32_t          vrom_start;
+  uint32_t          vrom_end;
+  uint32_t          vram_start;
+  uint32_t          vram_end;
+  void             *ptr;
+  uint32_t          vram_info;
+  uint32_t          unk_00_;
+} z64_part_ovl_t;
+
+typedef struct
+{
+  uint32_t          vrom_start;
+  uint32_t          vrom_end;
+  uint32_t          vram_start;
+  uint32_t          vram_end;
+  void             *ptr;
+  uint32_t          vram_info;
+  char             *filename;
+  int16_t           alloc_type;
+  uint8_t           n_inst;
+} z64_actor_ovl_t;
+
+typedef struct
+{
+  void             *ptr;
+  uint32_t          vrom_start;
+  uint32_t          vrom_end;
+  uint32_t          vram_start;
+  uint32_t          vram_end;
+  void             *reloc_0;
+  uint32_t          vram_ctor;
+  uint32_t          vram_dtor;
+  void             *reloc_1;
+  void             *reloc_2;
+  int32_t           keep_loaded;
+  uint32_t          inst_size;
+} z64_state_ovl_t;
+
+typedef struct
+{
+  void             *ptr;
+  uint32_t          vrom_start;
+  uint32_t          vrom_end;
+  uint32_t          vram_start;
+  uint32_t          vram_end;
+  uint32_t          vram_unk_00_;
+} z64_map_mark_ovl_t;
+
+typedef struct
+{
+  void             *ptr;
+  uint32_t          vrom_start;
+  uint32_t          vrom_end;
+  uint32_t          vram_start;
+  uint32_t          vram_end;
+  int32_t           reloc_offset;
+  char             *filename;
+} z64_play_ovl_t;
+
+800E7C40  z64_part_ovl_t      z64_part_ovl_tab[37];
+800E8530  z64_actor_ovl_t     z64_actor_ovl_tab[471];
+800F1340  z64_state_ovl_t     z64_state_ovl_tab[6];
+800F1BF8  z64_map_mark_ovl_t  z64_map_mark_ovl;
+800FC530  z64_actor_info_t    z64_player_actor_info;
+800FE480  z64_play_ovl_t      z64_play_ovl_tab[2];
+800FE4B8  void               *z64_play_ovl_data;
+800FE4BC  z64_play_ovl_t     *z64_play_ovl;
+
+800CDD90  void        z64_CreateArena(z64_arena_t *arena, void *start, uint32_t size);
+800CDDD8  void        z64_DestroyArena(z64_arena_t *arena);
+800CDDF8  int         z64_ArenaValid(z64_arena_t *arena);  /* checks if the start ptr is non-zero */
+800CE060  void       *z64_Alloc(z64_arena_t *arena, uint32_t size);
+800CE17C  void       *z64_AllocHi(z64_arena_t *arena, uint32_t size);
+800CE2B4  void        z64_Free(z64_arena_t *arena, void *ptr);
+
+8011BEF0  z64_arena_t z64_game_arena;
+80066C10  void       *z64_GameAlloc(uint32_t size);
+80066C38  void       *z64_GameAllocHi(uint32_t size);
+80066C90  void        z64_GameFree(void *ptr):
+80066D6C  void        z64_CreateGameArena(void *start, uint32_t size);
+80066D9C  void        z64_DestroyGameArena(void);
+80066DC0  int         z64_GameArenaValid(z64_arena_t *arena);
+
+8012BAA0  z64_arena_t z64_main_arena;
+800CD390  void        z64_CreateMainArena(void *start, uint32_t size);
+800CDA20  void       *z64_MainAlloc(uint32_t size);
+800CDA68  void       *z64_MainAllocHi(uint32_t size);
+800CDB00  void        z64_MainFree(void *ptr);
+800CDC44  void        z64_DestroyMainArena(void);
+800CDC68  int         z64_MainArenaValid(z64_arena_t *arena);
+
+800CCBB8  uint32_t    z64_LoadOverlay(uint32_t vrom_start, uint32_t vrom_end, uint32_t vram_start, uint32_t vram_end, void *dst);
+800CCD38  void       *z64_LoadStateOverlay(uint32_t vrom_start, uint32_t vrom_end, uint32_t vram_start, uint32_t vram_end);
+80066DF0  void        z64_LoadMapMarkOverlay(void);
+80099C60  uint32_t    z64_LoadPlayOvl(z64_play_ovl_t *play_ovl);
+80099CBC  uint32_t    z64_UnloadPlayOvl(z64_play_ovl_t *play_ovl);
+
+8001E9D0  void        z64_LoadState(z64_state_ovl_t *state_ovl);
+8001EAF8  void        z64_FreeState(z64_state_ovl_t *state_ovl);
+
+80081628  int         z64_FindObject(z64_obj_ctxt_t *obj_ctxt, int16_t object_id); /* returns slot of loaded object, or -1 */
+
+80002E80  memzero
+80063630  memset
+
+80020640  int         z64_RoomCleared(z64_game_t *game, int room_index);
+
+
+typedef struct
+{
+  uint32_t  size;
+  void     *start;
+  void     *lo;
+  void     *hi;
+} z64_heap_t;
+
+800A01B8  void       *z64_HeapAllocHi(z64_heap_t *heap, uint32_t size);
+800A01D8  void       *z64_HeapAllocAlignHi(z64_heap_t *heap, uint32_t size, uint32_t mask);
+800A01F4  uint32_t    z64_HeapFreeSpace(z64_heap_t *heap);
+
+typedef struct
+{
+  uint32_t      vrom_addr;
+  void         *dram_addr;
+  uint32_t      size;
+  char         *filename;
+  int32_t       line;
+  int32_t       unk_00_;
+  OSMesgQueue  *notify_mq;
+  OSMesg        notify_msg;
+} z64_getfile_t;
+
+80000D28  void        z64_RequestFile(z64_getfile_t *getfile_buf, void *dram_addr, uint32_t vrom_addr, uint32_t size,
+                                      int32_t zero, OSMesgQueue *notify_mq, OSMesg notify_msg);
+80000DF0  void        z64_LoadFile(void *dram_addr, uint32_t vrom_addr, uint32_t size);
+
+typedef struct
+{
+  uint32_t  vrom_start;
+  uint32_t  vrom_end;
+} z64_vrom_file_t;
+
+8009CCE8  void       *z64_AllocLoadFile(z64_ctxt_t *ctxt, z64_vrom_file_t *vrom_file);
+
+80121200  MtxF      (*z64_mtx_stack)[20];
+80121204  MtxF       *z64_mtx_stack_top;
+800AA6B0  MtxF       *z64_AllocMtxStack(z64_ctxt_t *ctxt);
+
+address   size      description           allocator           pointer
+----------------------------------------------------------------------------
+/* hyrule field after scene reload from title screen */
+801DAA00  0003D660  game arena
+80218060  00000500  matrix stack          z64_AllocMtxStack
+80218560  00001000  minimap texture       8006C340            game + 0x1062C
+80219560  00004000  item button textures  800E1C10            game + 0x10628
+8021D560  00000480  action button labels  800E1C10            game + 0x10624
+8021D9E0  00003B00  parameter_static      800E1C10            game + 0x10620
+/* room files size is the greater of:
+   the size of the biggest room, and
+   the biggest combination of rooms defined in the transition actor list */
+802214E0  00015230  room files            800808A0            game + 0x11CE4
+80236710  00000A00  skybox vertices (?)   80096E40            game + 0x020B4
+80237110  00003840  skybox dlists (?)     80096E40            game + 0x020AC
+8023A950  00000200  2 skybox palettes     80095CEC            game + 0x020A8
+8023AB50  0000C000  skybox texture 2      80095CEC            game + 0x020A4
+80246B50  0000C000  skybox texture 1      80095CEC            game + 0x020A0
+80252B50  00000070  elf_message_field     8009CCE8            game + 0x11E0C
+/* begin dynamic complex collision */
+80252BC0  00000FA0  ??                    8002B450            game + 0x01C08
+80253B60  00000C00  vertices              800311D0            game + 0x01C04
+80254760  00002000  polygons              80031188            game + 0x01C00
+/* end dynamic complex collision */
+/* begin static complex collision */
+80256760  0000062B  ??                    80030DAC            game + 0x0080C
+80256D90  000081D0  ??                    80030DAC            game + 0x00808
+8025EF60  00001800  ??                    8002EC70            game + 0x00800
+/* end static complex collision */
+80260760  000FA000  object space          800813D4
+8035A760  0002A220  scene file            8009CEEC            game + 0x000B0
+80384980  00001FE0  particle space        8001B000            800E7B40
+80386960  00002200  textbox texture (?)   800E2008            game + 0x10388
+80388B60  00026630  play_ovl              80099D0C
+
+80121220  what is this (disk drive function table pointer)

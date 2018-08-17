@@ -1,0 +1,37 @@
+scene config jump table
+800FBD18
+hyrule field config
+index 1 (800FBD1C): 8008663C
+
+8008663C hyrule field config function
+writes 16 bytes (2 commands) to POLY_OPA_DISP
+  E7000000 00000000 gsDPPipeSync()
+  FB000000 80808080 gsDPSetEnvColor(0x80, 0x80, 0x80, 0x80)
+writes 40 bytes (5 commands) to POLY_XLU_DISP
+  DB060020 801762E8 gsSPSegment(0x08, 801762E8) [dlist segment]
+    E8000000 00000000 gsDPTileSync()
+    (uls-1, ult+3, lrs-1, lrt+3)
+    F205507E 000D10FA gsDPSetTileSize(0, qu102(21.25), qu102(31.5), qu102(52.25), qu102(62.5))
+    E8000000 00000000 gsDPTileSync()
+    (uls+1, ult+3, lrs+1, lrt+3)
+    F202A07E 010A60FA gsDPSetTileSize(1, qu102(10.5), qu102(31.5), qu102(41.5), qu102(62.5))
+    DF000000 00000000 gsSPEndDisplayList()
+  DB060024 801762B8 gsSPSegment(0x09, 801762B8) [dlist segment]
+    E8000000 00000000 gsDPTileSync()
+    (uls-1, ult+10, lrs-1, lrt+10)
+    F2055024 000D10A0 gsDPSetTileSize(0, qu102(21.25), qu102(9), qu102(52.25), qu102(40))
+    E8000000 00000000 gsDPTileSync()
+    (uls+1, ult+10, lrs+1, lrt+10)
+    F202A024 010A60A0 gsDPSetTileSize(1, qu102(10.5), qu102(9), qu102(41.5), qu102(40))
+    DF000000 00000000 gsSPEndDisplayList()
+  E7000000 00000000 gsDPPipeSync()
+  FB000000 80808080 gsDPSetEnvColor(0x80, 0x80, 0x80, 0x80)
+  DB060028 80176318 gsSPSegment(0x0A, 80176318) [dlist segment]
+    (static ?)
+    FA000000 FFFFFF00 gsDPSetPrimColor(0, 0, 0xFF, 0xFF, 0xFF, 0x00)
+    DE000000 03012B20 gsSPDisplayList(0x03012B20)
+    DF000000 00000000 gsSPEndDisplayList()
+800868E4 end function
+
+8011F550 POLY_OPA_DISP ptr
+8011F560 POLY_XLU_DISP ptr

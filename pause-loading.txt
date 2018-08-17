@@ -1,0 +1,31 @@
+
+80288E20  obj_space_start
+80382E20  obj_space_end
+
+obj_space + 0x35830   icon_item_static
+
+801D8D28  pointer to icon_item_static
+801D8D2C  pointer to icon_item_24_static
+801D8D30  pointer to icon_item_field_static
+801D8D34  pointer to icon_item_jpn_static
+801D8D38  pointer to part of map_name_static
+801D8D3C  points within object space (??)
+
+
+8028C640  00F03000  0005BCE0  gameplay_keep
+80291640  00FBE000  0002CF80  object_link_child
+802BE5C0  0071A030  00000086  *link_animetion
+802BE650  007BD000  000888A0  icon_item_static
+80346EF0  00846000  0000B400  icon_item_24_static
+803522F0  00852000  0000B930  icon_item_field_static
+8035DC20  00864000  0000DC80  icon_item_jpn_static
+8036BCA0  008C6800  00000A00  *map_name_static
+
+80215AE0  008E0900  00000180
+80215C60  008E0900  00000180
+
+8007C09C
+
+8039B760
+  8039B8AC
+    8007C09C

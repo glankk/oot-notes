@@ -1,0 +1,14 @@
+b.[0x801CA0C4]: some sort of countdown
+b.[0x801CA0C5]: unknown boolean?
+b.[0x801CA0C6]: some sort of countdown
+b.[0x801CA0C7]: lens of truth active
+
+b.[0x801D8FA4]: time of day effect state
+b.[0x801D8FA5]: fill color active
+b.[0x801D8FA6]: fill color r
+b.[0x801D8FA7]: fill color g
+b.[0x801D8FA8]: fill color b
+b.[0x801D8FA9]: fill color a
+b.[0x801D8FAA]: sand effect state
+b.[0x801D8FAB]: sand effect timer?
+b.[0x801D8FAC]: sand effect intensity?

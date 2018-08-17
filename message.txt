@@ -1,0 +1,5 @@
+801D8328  raw message buffer
+801D8880  text buffer (why?)
+801D8944  buffer size/pos stuff
+
+800DC7D0  text character handler

@@ -1,0 +1,27 @@
+typedef struct
+{
+  uint16_t  id;
+  z64_xyz_t pos;
+  z64_xyz_t rot;
+  uint16_t  var;
+} z64_sr_actor_t;
+
+typedef struct
+{
+  uint16_t  pos_idx;
+  uint16_t  room_idx;
+} z64_sr_entrance_t;
+
+typedef struct
+{
+  uint32_t  vrom_start;
+  uint32_t  vrom_end;
+} z64_vrom_file_t;
+
+
+ctxt + 0x11DEC  uint8_t             n_rooms;
+ctxt + 0x11DF0  z64_vrom_file_t    *room_list;
+ctxt + 0x11DF4  z64_sr_actor_t     *pos_list;
+ctxt + 0x11DF8  z64_sr_actor_t     *actor_list[2];
+ctxt + 0x11E00  z64_sr_entrance_t  *entrance_list;
+ctxt + 0x11E04  uint16_t           *exit_list;

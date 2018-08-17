@@ -1,0 +1,53 @@
+8010A928  int16_t     graph note length
+80112E8C  uint8_t     graph note buffer [9]
+
+enum
+{
+  Z64_NOTE_A,
+  Z64_NOTE_CD,
+  Z64_NOTE_CR,
+  Z64_NOTE_CL,
+  Z64_NOTE_CU,
+};
+
+80121F44  uint16_t    matching song bitmask
+80121F46  uint8_t     staff note pos
+80121F48  uint16_t    matching song lengths [Z64_SONG_MAX]
+{
+  80121F48  uint16_t    minuet
+  80121F4A  uint16_t    bolero
+  80121F4C  uint16_t    serenade
+  80121F4E  uint16_t    requiem
+  80121F50  uint16_t    nocturne
+  80121F52  uint16_t    prelude
+  80121F54  uint16_t    saria
+  80121F56  uint16_t    epona
+  80121F58  uint16_t    zl
+  80121F5A  uint16_t    sun
+  80121F5C  uint16_t    sot
+  80121F5E  uint16_t    storm
+  80121F60  uint16_t    scarecrow
+}
+
+enum
+{
+  Z64_SONG_MINUET,
+  Z64_SONG_BOLERO,
+  Z64_SONG_SERENADE,
+  Z64_SONG_REQUIEM,
+  Z64_SONG_NOCTURNE,
+  Z64_SONG_PRELUDE,
+  Z64_SONG_SARIA,
+  Z64_SONG_EPONA,
+  Z64_SONG_ZELDA,
+  Z64_SONG_SUN,
+  Z64_SONG_TIME,
+  Z64_SONG_STORM,
+  Z64_SONG_SCARECROW,
+  Z64_SONG_MAX,
+};
+
+
+80102208  uint8_t
+8010220C  uint8_t
+80102238  uint32_t

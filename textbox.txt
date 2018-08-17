@@ -1,0 +1,10 @@
+0x800D7B00
+0x800DDA6C
+0x800E0AA4
+textbox functions
+
+b.[0x801D887C] textbox_state
+
+
+0x800E0AA4:
+  if textbox_state < 8 then goto w.[0x801136BC + textbox_state * 4]

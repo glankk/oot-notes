@@ -1,0 +1,13 @@
+80195F00
+
+8012AA7C  80195470
+          8019CB38
+
+800BF308  fetch next seq command
+
+80101830  uint8_t   8011FF98 + ([cmd - 0xB0] & 0x03) * 4
+80101830  uint8_t   [(cmd - 0xB0) & 0x80]
+
+call w.[80109A94 + (cmd - 0xB0) * 4]
+
+call w.[80109A00 + (cmd - 0xF2) * 4]

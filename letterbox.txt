@@ -1,0 +1,6 @@
+800FE470  int32_t letterbox_state;
+  0:  idle
+  1:  closing
+  2:  opening
+800FE474  int32_t letterbox_target;
+800FE478  int32_t letterbox_current;

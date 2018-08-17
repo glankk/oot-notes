@@ -1,0 +1,15 @@
+b.[0x801D887C] textbox state
+b.[0x801D887E] textbox text
+
+b.[0x801D8875] textbox background
+
+0x800C806C play sound effect function..?
+
+0x800D6218 end textbox function
+b.[0x801D895F] := 0x02
+b.[0x801D887C] := 0x36
+b.[0x801D895C] := 0x00
+jal 0x800C806C
+  $a0: 0x00000000
+  $a1: 0x80104394
+  $a2: 0x00000004

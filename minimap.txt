@@ -1,0 +1,11 @@
+800F5530  int16_t x;
+800F5534  int16_t y;
+800F5538  int16_t rot; /* 1/10 radians ?? */
+
+801C7DC0  int16_t dx;
+801C7DC2  int16_t dy;
+801C7DC4  int16_t xoffset;
+801C7DC6  int16_t yoffset;
+801C7DC8  int16_t r;
+801C7DCA  int16_t g;
+801C7DCC  int16_t b;

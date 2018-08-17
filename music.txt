@@ -1,0 +1,9 @@
+800CAA70 music command function
+leave fire: $a0 := 0x700700FF
+enter forest: $a0 := 0x0000002C
+  $v0 := b.[0x801043B0]
+  w.[0x80124800 + $v0 * 4] := $a0
+  b.[0x801043B0] := $v0 + 0x0001
+
+800C7684 music configuration function for scene exits
+calls 800CAA70 a bunch

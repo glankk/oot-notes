@@ -1,0 +1,159 @@
+
+803A9E34  float     magnitude;
+803A9E38  int16_t   direction;
+
+VERY SUSPICIOUS
+  8038DD8C
+  8038DD94
+  8038DD98
+  8038DD9C
+
+
+801C8C30: 801C8680
+          801C87B4
+
+
+80038A14  f80038A14(arg0 = ctxt + 0x1E0 = 0x801C8680)
+          z64_sph_coord_t local7C;
+80039090  vec_lookat(&local7C, arg0 + 0x50, arg0 + 0x74); /* 801C86D0, 801C86F4 */
+80039350  h.[arg0 + 0x136] = local7C.azimuth; /* 801C87B6 */
+
+          if (z64_file.energy < 0x11 && (w.[w.[arg0 + 0x8C] + 0x9C] & 0xFF) == 0) {
+800393A8    h.[arg0 + 0x136] = (int)(frand() * 10000.) + h.[arg0 + 0x136] /* 80106C20 */
+          }
+
+/* 800CDC90 */
+uint32_t rand(void)
+{
+  w80105440 = w80105440 * 0x0019660D + 0x3C6EF35F;
+  return w80105440;
+}
+
+/* 800CDCCC */
+float frand(void)
+{
+  union
+  {
+    uint32_t  i;
+    float     f;
+  } pun;
+  pun.i = (rand() & 0x007FFFFF) | 0x3F800000; /* 1. + random significand */
+  return pun.f - 1.; /* random value (0. <= x < 1.) */
+}
+
+/* spherical coordinate */
+typedef struct
+{
+  float     radius;     /* 0x0000 */
+  int16_t   altitude;   /* 0x0004 */
+  int16_t   azimuth;    /* 0x0006 */
+                        /* 0x0008 */
+} z64_sph_coord_t;
+
+/* 80067A84 */
+z64_sph_coord_t *vec_lookat(z64_sph_coord_t *result, z64_xyzf_t *origin, z64_xyzf_t *point)
+{
+  /* compute the horizontal vector that points from `origin` to `point` */
+  z64_xyzf_t vec;
+  vec->x = point->x - origin->x;
+  vec->y = point->y - origin->y;
+  vec->z = point->z - origin->z;
+  return xyz_to_horizont(result, &vec);
+}
+
+/* 800679E8 */
+z64_sph_coord_t *xyz_to_horizont(z64_sph_coord_t *result, z64_xyzf_t *vec)
+{
+  /* translate a cartesian coordinate to a horizontal coordinate
+     (spherical coordinate with the altitude measured from the horizon) */
+  z64_sph_coord_t sc;
+  xyz_to_sphere(&sc, vec);
+  /*
+     translate the altitude angle from
+     "up and descending" to "forward and ascending"
+     such that 0 is forward,
+     negative values point to the lower hemisphere,
+     and positive values point to the upper hemisphere,
+     as in the horizontal coordinate system.
+  */
+  sc.altitude = 0x3FFF - sc.altitude;
+  *result = sc;
+  return result;
+}
+
+/* 80067894 */
+z64_sph_coord_t *xyz_to_sphere(z64_sph_coord_t *result, z64_xyzf_t *vec)
+{
+  /* translate a cartesian coordinate to a spherical coordinate
+     (the altitude measured from the zenith (+y), azimuth measured from +z) */
+  z64_sph_coord_t sc;
+
+  float xz = sqrtf(vec->x * vec->x + vec->z * vec->z);
+  if (xz != 0. || vec->y != 0.)
+    sc.altitude = atan2f(xz, vec->y) * 57.295776 * 182.04167 + 0.5; /* 80107B04, 80107B08 (convert to 16-bit bams) */
+  else
+    sc.altitude = 0;
+
+  sc.radius = sqrtf(vec->y * vec->y + vec->x * vec->x + vec->z * vec->z);
+
+  if (vec->x != 0. || vec->z != 0.)
+    sc.azimuth = atan2f(vec->x, vec->z) * 57.295776 * 182.04167 + 0.5; /* 80107B0C, 80107B10 (convert to 16-bit bams) */
+  else
+    sc.azimuth = 0;
+
+  *result = sc;
+  return result;
+}
+
+/* 800CD648 */
+float atanf(float x)
+{
+  int sign;
+  if (x > 1.) {
+    sign = 1;
+    x = 1. / x;
+  }
+  else if (x < -1.) {
+    sign = -1;
+    x = 1. / x;
+  }
+  else
+    sign = 0;
+
+  float n = 0.;
+  for (int i = 24; i != 0; --i) { /* unrolled loop of 6*4 */
+    float fi = i;
+    n = fi * fi * (x * x) / (fi + fi + 1. + n);
+  }
+
+  if (sign > 0)
+    return 1.5707964 - x / (1. + n); /* 8010A4F0 */
+  else if (sign < 0)
+    return -1.5707964 - x / (1. + n); /* 8010A4F4 */
+  else
+    return x / (1. + n);
+}
+
+/* 800CD76C */
+float atan2f(float y, float x)
+{
+  if (y == 0. && x == 0.)
+    return 0.;
+
+  if (x != 0.) {
+    if (x < 0) {
+      if (y < 0)
+        return -(3.1415927 - atanf(fabs(y / x))); /* 8010A500 */
+      else
+        return 3.1415927 - atanf(fabs(y / x)); /* 8010A504 */
+    }
+    else
+      return atanf(y / x);
+  }
+  else {
+    if (y < 0)
+      return -1.5707964; /* 8010A4F8 */
+    else
+      return 1.5707964; /* 8010A4FC */
+  }
+}

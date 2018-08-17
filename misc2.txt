@@ -1,0 +1,45 @@
+input accessors:
+800A279C write
+8005B860 read
+803A0968 read
+
+
+800A279C
+called by 800A0BA0
+
+800A0BA0
+called by 800A1688
+
+800A1688
+called by 800A1934
+
+800A1934
+seems to be the main loop
+
+
+
+    /*link actor proc*/
+    /*((void(*)(uint32_t, uint32_t))0x80097740)(0x801DAA30, 0x801C84A0);*/
+
+
+input reader?
+800A29A0
+
+blue warp ptr + timer
+801CA10C
+801EFA92
+h.[w.[0x801CA10C] + 0x0182]
+
+deku tree gs'
+8011B46C
+
+next cutscene number
+8011B9E2
+
+vi loop
+800AD2B4
+notifies message queues at
+  8011D558, received at 800A2970
+  80120CEC, received at 800A0540
+  80007B80, received at 800A1F88
+  8011D2A8, received at 800A36D8

@@ -1,0 +1,53 @@
+scene config jump table
+800FBD18
+kokiri forest config
+index 4 (800FBD28): 80086BCC
+
+80086BCC kokiri forest config function
+writes 40 bytes (5 commands) to POLY_OPA_DISP
+  E7000000 00000000 gsDPPipeSync()
+  FB000000 80808080 gsDPSetEnvColor(0x80, 0x80, 0x80, 0x80)
+  DB060028 80176388 gsSPSegment(0x0A, 0x80176388) [dlist segment]
+    (static)
+    E7000000 00000000 gsDPPipeSync()
+    FB000000 80808080 gsDPSetEnvColor(0x80, 0x80, 0x80, 0x80)
+    DF000000 00000000 gsSPEndDisplayList()
+  DB06002C 801763A0 gsSPSegment(0x0B, 0x801763A0) [dlist segment]
+    (static)
+    E7000000 00000000 gsDPPipeSync()
+    FB000000 80808032 gsDPSetEnvColor(0x80, 0x80, 0x80, 0x32)
+    DF000000 00000000 gsSPEndDisplayList()
+  DB060030 801762F8 gsSPSegment(0x0C, 0x801762F8) [dlist segment]
+    (static ?)
+    E8000000 00000000 gsDPTileSync()
+    F2000000 0007C03C gsDPSetTileSize(0, qu102(0), qu102(0), qu102(31), qu102(15))
+    E8000000 00000000 gsDPTileSync()
+    F2000000 0107C03C gsDPSetTileSize(1, qu102(0), qu102(0), qu102(31), qu102(15))
+    DF000000 00000000 gsSPEndDisplayList()
+writes 40 bytes (5 commands) to POLY_XLU_DISP
+  DB060024 80188768 gsSPSegment(0x09, 0x80188768) [dlist segment]
+    E8000000 00000000 gsDPTileSync()
+    (uls-1, ult+1, lrs-1, lrt+1)
+    F202F050 000AB0CC gsDPSetTileSize(0, qu102(11.75), qu102(20), qu102(42.75), qu102(51))
+    E8000000 00000000 gsDPTileSync()
+    (uls+1, ult+1, lrs+1, lrt+1)
+    F2050050 010CC0CC gsDPSetTileSize(1, qu102(20), qu102(20), qu102(51), qu102(51))
+    DF000000 00000000 gsSPEndDisplayList()
+  DB060020 80188738 gsSPSegment(0x08, 0x80188738) [dlist segment]
+    E8000000 00000000 gsDPTileSync()
+    (uls-1, ult+10, lrs-1, lrt+10)
+    F202F020 000AB09C gsDPSetTileSize(0, qu102(11.75), qu102(8), qu102(42.75), qu102(39))
+    E8000000 00000000 gsDPTileSync()
+    (uls+1, ult+10, lrs+1, lrt+10)
+    F2050020 010CC09C gsDPSetTileSize(1, qu102(20), qu102(8), qu102(51), qu102(39))
+    DF000000 00000000 gsSPEndDisplayList()
+  E7000000 00000000 gsDPPipeSync()
+  FB000000 80808080 gsDPSetEnvColor(0x80, 0x80, 0x80, 0x80)
+  DB06002C 801887B0 gsSPSegment(0x0B, 0x801887B0) [dlist segment]
+    E7000000 00000000 gsDPPipeSync()
+    FB000000 80808032 gsDPSetEnvColor(0x80, 0x80, 0x80, 0x32)
+    DF000000 00000000 gsSPEndDisplayList()
+80086FF4 end function
+
+8011F550 POLY_OPA_DISP ptr
+8011F560 POLY_XLU_DISP ptr

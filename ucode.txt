@@ -1,0 +1,49 @@
+oot-1.0-j
+  gfx + 0x0078 (8011F308) OSScTask
+    boot    800060B0  00000160
+    code    800E3F70  00001000
+    data    801145C0  00000800
+    stack   8016A240  00000400
+    output  80151640  80169640
+    dlist   8018E958  00000008
+    yield   80169640  00000C00
+
+  rspboot
+    code    800060B0  00000160  (000000D0)
+    data    00000000  00000000  (00000000)
+
+  RSP Gfx ucode F3DZEX.NoN  fifo 2.06H Yoshitaka Yasumoto 1998 Nintendo.
+    code    800E3F70  00001000  (00001390)
+    data    801145C0  00000800  (00000420)
+
+  RSP Gfx[Safe] S2DEX       fifo 2.05  Yoshitaka Yasumoto 1998 Nintendo.
+    code    800E5300  00001000  (000018C0)
+    data    801149E0  00000800  (00000390)
+
+
+oot-1.2-u
+  rspboot
+    code    800065C0  00000160  (000000D0)
+    data    00000000  00000000  (00000000)
+
+  RSP Gfx ucode F3DZEX.NoN  fifo 2.06H Yoshitaka Yasumoto 1998 Nintendo.
+    code    800E45B0  00001000  (00001390)
+    data    80114C70  00000800  (00000420)
+
+  RSP Gfx[Safe] S2DEX       fifo 2.05  Yoshitaka Yasumoto 1998 Nintendo.
+    code    800E5940  00001000  (000018C0)
+    data    80115090  00000800  (00000390)
+
+
+mm-1.0-u
+  rspboot
+    code    800969C0  00000160  (000000D0)
+    data    00000000  00000000  (00000000)
+
+  RSP Gfx ucode F3DZEX.NoN  fifo 2.08I Yoshitaka Yasumoto/Kawasedo 1999.
+    code    801E2160  00001000  (00001390)
+    data    801E3790  00000800  (00000420)
+
+  RSP Gfx ucode S2DEX       fifo 2.08  Yoshitaka Yasumoto 1999 Nintendo.
+    code    801ABAB0  00001000  (000018C0)
+    data    801E3BB0  00000800  (00000390)

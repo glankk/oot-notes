@@ -1,0 +1,43 @@
+
+w.[$sp + 0x0040] := -1
+
+if w.[$sp + 0x0040] > 0 then
+  $a2 := w.[$sp + 0x0040]
+else
+  $v0 := w.[game + 0x1C20]
+  $v1 := w.[game + 0x07DC] * 6 * w.[game + 0x07E0] * w.[game + 0x07E4] + hz.[col_hdr + 0x0014] + w.[game + 0x1C14] * 4 + w.[game + 0x1C18] * 0x10 + w.[game + 0x1C1C] * 6 + 0x1464
+  if $v0 < $v1 then
+    $a0 := 0x80106A60
+    $a1 := 0x1083
+    save $v0, $v1
+    call 80001B38
+  end
+  $a2 := ($v0 - $v1) / 4
+end
+
+w.[game + 0x1C20]     (0x801CA0C0) = 0x0000F000
+w.[game + 0x07DC]     (0x801C8C7C) = 0x00000010
+w.[game + 0x07E0]     (0x801C8C80) = 0x00000004
+w.[game + 0x07E4]     (0x801C8C84) = 0x00000010
+hz.[col_hdr + 0x0014] (0x80362BD8) = 0x062B
+w.[game + 0x1C14]     (0x801CA0B4) = 0x000003E8
+w.[game + 0x1C18]     (0x801CA0B8) = 0x00000200
+w.[game + 0x1C1C]     (0x801CA0BC) = 0x00000200
+
+  (10 * 4 * 10 * 6 = 1800)
++ (n_poly          = 62B)
++ (3E8 * 4         = FA0)
++ (200 * 10        = 2000)
++ (200 * 6         = C00)
++ (1464            = 1464)
+                   = 6E2F
+(F000 - 6E2F) / 4  = 2074
+
+col_size      = w.[game + 0x1C20]
+dcc_lst_size  = w.[game + 0x1C14] * 0x0004
+dcc_vtx_size  = w.[game + 0x1C1C] * 0x0006
+dcc_poly_size = w.[game + 0x1C18] * 0x0010
+scc_1_size    = col_hdr.n_poly
+scc_3_size    = w.[game + 0x07DC] * w.[game + 0x07E0] * w.[game + 0x07E4] * 0x0006
+scc_2_n       = (col_size - dcc_lst_size - dcc_vtx_size - dcc_poly_size - scc_1_size - scc_3_size - 0x1464) / 4
+scc_2_size    = scc_2_n * 4

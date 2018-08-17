@@ -1,0 +1,164 @@
+801C84A0 ctxt
+801D8E18 int16_t item_menu_slot?    /* 0x10978 */
+801D8E3E int16_t item_menu_item;    /* 0x1099E */
+801D8E46 int16_t item_menu_slot?    /* 0x109A6 */
+
+8011A5D0 file
+8011A638 int8_t button_items[4];    /* 0x0068 */
+8011A63C int8_t c_button_slots[3];  /* 0x006C */
+
+8038EFF0 start menu navigation proc (?)
+8038F070 start of critical path (item menu)
+$s0 = ctxt + 0x00010760
+  $t5 := h.[$s0 + 0x01E8]
+  if $t5 <> 0 then goto 8038F8F0*
+  $t6 := h.[$s0 + 0x0218]
+  $s1 := 0x00000000
+  $t9 := 0x00000004
+  h.[$sp + 0x008E] := $t6
+  $t7 := h.[$s0 + 0x023E]
+  h.[$sp + 0x009A] := $t7
+  $t8 := h.[$s0 + 0x0246]
+  h.[$sp + 0x0098] := $t8
+  $v0 := h.[$s0 + 0x0238]
+  if $v0 <> 0 then goto 8038F2E4*
+  h.[$s0 + 0x0260] := $t9
+  $t4 := h.[$sp + 0x009A]
+  $at := 0x000003E7
+  $t5 := 0x00000028
+  $s4 := 0x000000FF
+  if $t4 <> $at then goto 8038F0C4
+  h.[$s0 + 0x0214] := $t5
+8038F0C4:
+  $v0 := h.[$s0 + 0x0214] (0x801D8E14)
+  $s3 := 0x80120000
+  $s3 := $s3 + 0xA5D0
+  $v1 := -$v0
+  if $v0 < 0 then goto 8038F0E0
+  $v1 := $v0
+8038F0E0:
+  $at := $v1 < 0x001F
+  if $at <> 0 then goto 8038F2D8*
+  ...
+8038F690:
+8038F6F0:
+  $t8 := h.[$sp + 0x009A]
+  $t5 := w.[$s0 + 0x0158]
+  $t4 := 0x00000003
+  h.[$s0 + 0x024E] (0x801D8E4E) := $t8 ; set item to be equipped
+
+8038FE00 c button equip proc (?)
+803902B0 start of critical path (set button item)
+  $t2 := h.[0x8039EAB8] - 1
+  h.[0x8039EAB8] := $t2
+  if $t2 <> 0 then goto end
+  if $a3 <> h.[0x8039EAB0] then goto 803902F0
+  ...
+803902F0:
+  $v0 := h.[0x801D8C00 + 0x0252] (0x801D8E52)
+  if $v0 <> 0 then goto 80390538*
+  $t6 := b.[0x8011A5D0 + 0x006D] (0x8011A63D)
+  $v0 := h.[0x801D8C00 + 0x0250] (0x801D8E50)
+  $t2 := b.[0x8011A5D0 + 0x006E] (0x8011A63E)
+  if $v0 <> $t6 then goto 803903A0
+  ...
+803903A0:
+  $a2 := h.[0x801D8C00 + 0x024E] (0x801D8E4E) ; get item to be equipped
+  if $v0 <> $t2 then goto 80390434
+  ...
+80390434:
+  if $a2 < 0x00BF then goto 80390484
+  ...
+80390484:
+  if $a2 <> 3 then goto 8039050C
+  ...
+8039050C:
+  b.[0x8011A639] := $a2 ; set button item
+
+801D8E3E setters
+  8038F5F0
+  8038F8A8
+
+801D8E14 getters
+  map menu
+    hovering left edge
+      80394A48
+      803923AC
+  item menu
+    hovering right edge
+      80394AA4
+      8038F2E4
+    hovering an item
+      8038F0C4
+      8038F4B4
+  always
+    handle repetition
+      8039547C
+      80395588
+801D8E14 setters
+  h.[0x801D8E14] := b.[ctxt + 0x0028] (0x801C84C8)
+  h.[0x801D8E16] := b.[ctxt + 0x0029] (0x801C84C9)
+801C84C8 setters
+  w.[0x801C84C8] := w.[0x8011D744]
+800CCED4 compute adjusted analog coords
+  $v1 := b.[0x8011D732]
+  $v0 := b.[0x8011D733]
+  if ($v1 > -8 && $v1 < 8)
+    $a1 := 0
+  else if ($v1 > 66)
+    $a1 := 60
+  else if ($v1 < -66)
+    $a1 := -60
+  else if ($v1 > 0)
+    $a1 := $v1 - 7
+  else if ($v1 < 0)
+    $a1 := $v1 + 7
+  if ($v0 > -8 && $v0 < 8)
+    $a2 := 0
+  else if ($v0 > 66)
+    $a2 := 60
+  else if ($v0 < -66)
+    $a2 := -60
+  else if ($v0 > 0)
+    $a2 := $v0 - 7
+  else if ($v0 < 0)
+    $a2 := $v0 + 7
+  b.[0x8011D744] := $a1
+  b.[0x8011D745] := $a2
+
+failed attempt upleft
+801D8E14 = 0xFFC40011
+  8038F2E4
+  8038F4B4
+  8038F6FC
+
+successful attempt upleft
+801D8E14 = 0xFFC4003C
+  8038F2E4
+  8038F4B4
+  8038F4E4
+  8038F6FC
+
+failed attempt downleft
+801D8E14 = 0xFFC4FFEF
+  8038F2E4
+  8038F4B4
+  8038F6FC
+
+successful attempt downleft
+801D8E14 = 0xFFC4FFC4
+  8038F2E4
+  8038F4B4
+  8038F4E4
+  8038F598
+  8038F598
+  8038F598
+  8038F6FC
+
+8038F4B4 check for vertical input
+  8038F4E4 choose branch by vertical direction
+    8038F4F4 check slot available up
+    8038F54C check slot available down
+  8038F598 slot check loop
+8038F5B0 check if slot found
+  8038F5C0 update equip-item

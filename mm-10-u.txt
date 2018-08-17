@@ -1,0 +1,15 @@
+index     vstart    vend      pstart    pend      description
+0031      00B3C000  00C7A4E0  00A684D0  00B26590  code
+
+ram       code      description
+800A5AC0  00000000  code file
+801748A0  000CEDE0  main loop
+801D1E80  0012C3C0  padding?
+803E6B20            ctxt
+801F9CB8            gfx
+
+80209EA0  Gfx       disp_buf[2][16482];
+
+
+ctxt + 0x000B0  void           *scene_file;
+ctxt + 0x00830  z64_col_hdr_t  *col_hdr

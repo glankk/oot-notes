@@ -1,0 +1,66 @@
+80024280 ?
+  $a0: ctxt
+  $a1: pointer to an actor
+  $s0 := $a1
+  $s1 := $a0
+  800970DC: 0x800AA8FC([$s0 + 0x0050], [$s0 + 0x0054], [$s0 + 0x0058], 1)
+
+80024374
+  $f12 = [gfx + 0x0024]
+  $f14 = [gfx + 0x0028] + [gfx + 0x00BC] * [gfx + 0x0054]
+  $a2  = [gfx + 0x002C]
+  $a3  = gfx + 0x00B4
+  jal guRotateRPYF
+
+8007EB84
+  prepends a texture shift display list to the end of POLY_OPA_DISP
+800AA6EC
+  copies the floating point matrix pointed to by 0x80121204 to
+  0x80121204 + 0x0040 (calls 800ABA10), then adds 0x0040 to 0x80121204
+800AA724
+  subtracts 0x0040 to 0x80121204
+800AA8FC
+  $a0 := [0x80121204]
+  if ($a3 == 1) {
+    $a0[0] := $a0[0] * $f12
+    $a0[1] := $a0[1] * $f12
+    $a0[2] := $a0[2] * $f12
+    $a0[3] := $a0[3] * $f12
+    $a0[4] := $a0[4] * $f14
+    $a0[5] := $a0[5] * $f14
+    $a0[6] := $a0[6] * $f14
+    $a0[7] := $a0[7] * $f14
+    $a0[8] := $a0[8] * $a2
+    $a0[9] := $a0[9] * $a2
+    $a0[A] := $a0[A] * $a2
+    $a0[B] := $a0[B] * $a2
+  }
+  else
+    guScaleF(...)
+800ABA10
+  copies floating point matrix from $a1 to $a0
+800AB900
+  converts the floating point matrix pointed to by 0x80121204 to
+  a fixed point matrix, and prepends it to the end of POLY_OPA_DISP
+80121204 floating point matrix stack pointer
+
+gu functions
+8008F4A8  guScaleF
+8008F50C  guRotateRPYFS(MtxF *mf, int16_t r, int16_t p, int16_t y);
+8008F82C  guTranslateF
+800AB510  guRotateRPYF
+800AB6BC  guMtxF2L
+
+trigonometry functions
+800CF630  int16_t sins(int16_t angle);
+  compute sine of $a0 (i16, range -32768 - 32768 corresponds to -PI - PI radians)
+  uses lookup table at 0x801054A0 (fixed point 0.11, 1024 16-bit entries)
+800D2FA0  int16_t coss(int16_t angle);
+  compute cosine of $a0
+  adds 0x4000 (90 degrees) to $a0 and calls 800CF630, then returns the result
+800636C4  float fsins(int16_t angle);
+  calls 800CF630, converts the result to a float and returns it
+  factor for conversion is stored at 0x80107A64 (float)
+80063684  float fcoss(int16_t angle);
+  calls 800D2FA0, converts the result to a float and returns it
+  factor for conversion is stored at 0x80107A60 (float)

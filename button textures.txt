@@ -1,0 +1,6 @@
+801D8AC8:= 80219560
+pointer to equipped item texture buffer
+801D8ACC:= 80218560
+pointer to minimap texture
+
+8006FBE0 dma item icon

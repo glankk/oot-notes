@@ -1,0 +1,16 @@
+8011F290 gfx
+
+
+8011F548 poly_opa_disp_size
+8011F54C poly_opa_disp
+8011F550 poly_opa_disp_p
+8011F554 poly_opa_disp_e
+
+8009FEC0 set disp buffer
+$a0: pointer to *_disp_size
+$a1: pointer to new buffer
+$a2: buffer size
+  w.[$a0 + 0x0000] := $a2
+  w.[$a0 + 0x0004] := $a1
+  w.[$a0 + 0x0008] := $a1
+  w.[$a0 + 0x000C] := $a1 + $a2

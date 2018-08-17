@@ -1,0 +1,32 @@
+800A3674 sched thread main ?
+800A36D0 sched thread loop
+800A36D8 call osRecvMesg from sched thread, blocking
+
+8011D2A8 sched mq
+8011D2C0 sched mesg
+
+0x0000029B
+0x0000029C
+0x0000029E
+special messages?
+
+struct sched_mesg
+{
+  uint16_t type;
+};
+
+type handlers, called with $a0 = 0x8011D2A8
+  0x0000 0x800A2C04
+  0x0001 0x800A3244
+  0x0003 0x800A2C10
+
+800A3244
+  calls 800A2BC0 at 800A32FC
+
+800A2BC0 issue display list task ?
+
+
+800A1660  send graphics task to scheduler
+  $a0: 0x8011D2E0
+  $a1: 0x8011F308
+  $a2: 0x00000001

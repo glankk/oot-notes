@@ -1,0 +1,26 @@
+pause_state: h.[ctxt + 0x10934] (0x801D8DD4)
+ctxt_unk_01_: h.[ctxt + 0x10760] (0x801D8C00)
+textbox_state: w.[ctxt + 0x103D8] (0x801D8878)
+ctxt_unk_03_: b.[ctxt + 0x103DC] (0x801D887C) ocarina state?
+ctxt_unk_04_: h.[ctxt + 0x10A3E] (0x801D8EDE)
+ctxt_unk_05_: w.[ctxt + 0x07B8] (0x801C8C58)
+ctxt_unk_06_: b.[ctxt + 0x1241B] (0x801DA8BB)
+interface_flag: w.[file + 0x135C] (0x8011B92C)
+day_time: h.[file + 0x000C] (0x8011A5DC)
+night_flag: w.[file + 0x0010] (0x8011A5E0)
+day_speed: h.[0x800F1650]
+
+if pause_state <> 0 then stop
+if ctxt_unk_01_ <> 0 then stop
+if (textbox_state <> 0 or ctxt_unk_03_ < 0) and interface_flag <> 3 then stop
+if ctxt_unk_04_ <> 0 then stop
+if ctxt_unk_05_ > 0 then stop
+if ctxt_unk_06_ <> 0 and interface_flag = 0 then stop
+if night_flag and day_speed < 0x0190 then
+  day_time += day_speed * 2
+else
+  day_time += day_speed
+
+
+scene_day_speed: h.[ctxt + 0x10A26] (0x801D8EC6)
+temp_day_speed: h.[0x800F7638]

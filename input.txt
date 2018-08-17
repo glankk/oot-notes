@@ -1,0 +1,17 @@
+80006340 pointer to current thread
+
+800A296C input thread loop
+800A25DC input function
+
+80002E80 memzero
+
+80006850
+80007220
+80007DD8
+80008A60
+80009F20
+8011D318
+8011D580 input thread
+8011DA00
+8011DBE8
+80120D60

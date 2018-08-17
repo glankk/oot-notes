@@ -1,0 +1,66 @@
+8004B960  int ? (z64_game_t *game, void *actor_ptr_1, void *actor_ptr_2, void *ovl_ptr);
+  w.[actor_ptr_1 + 0x0000] := actor_ptr_2
+  b.[actor_ptr_1 + 0x0010] := b.[ovl_ptr + 0x0001]
+  b.[actor_ptr_1 + 0x0011] := b.[ovl_ptr + 0x0002]
+  b.[actor_ptr_1 + 0x0012] := b.[ovl_ptr + 0x0003]
+  b.[actor_ptr_1 + 0x0013] := b.[ovl_ptr + 0x0004]
+  b.[actor_ptr_1 + 0x0014] := b.[ovl_ptr + 0x0000]
+  b.[actor_ptr_1 + 0x0015] := b.[ovl_ptr + 0x0005]
+  w.[actor_ptr_1 + 0x0018] := w.[ovl_ptr + 0x000C]
+  b.[actor_ptr_1 + 0x001C] := b.[ovl_ptr + 0x0010]
+  b.[actor_ptr_1 + 0x001D] := b.[ovl_ptr + 0x0011]
+  w.[actor_ptr_1 + 0x0020] := w.[ovl_ptr + 0x0014]
+  b.[actor_ptr_1 + 0x0024] := w.[ovl_ptr + 0x0018]
+  b.[actor_ptr_1 + 0x0025] := w.[ovl_ptr + 0x0019]
+  b.[actor_ptr_1 + 0x002C] := b.[ovl_ptr + 0x0008]
+  b.[actor_ptr_1 + 0x002D] := w.[ovl_ptr + 0x001C]
+  b.[actor_ptr_1 + 0x002E] := w.[ovl_ptr + 0x001D]
+  b.[actor_ptr_1 + 0x002F] := w.[ovl_ptr + 0x001E]
+  w.[actor_ptr_1 + 0x0040] := w.[ovl_ptr + 0x0020]
+  w.[actor_ptr_1 + 0x0044] := w.[ovl_ptr + 0x0024]
+  w.[actor_ptr_1 + 0x0048] := w.[ovl_ptr + 0x0028]
+  w.[actor_ptr_1 + 0x004C] := w.[ovl_ptr + 0x002C]
+  w.[actor_ptr_1 + 0x0050] := w.[ovl_ptr + 0x0030]
+  w.[actor_ptr_1 + 0x0054] := w.[ovl_ptr + 0x0034]
+  w.[actor_ptr_1 + 0x0058] := w.[ovl_ptr + 0x0038]
+  w.[actor_ptr_1 + 0x005C] := w.[ovl_ptr + 0x003C]
+  w.[actor_ptr_1 + 0x0060] := w.[ovl_ptr + 0x0040]
+  w.[actor_ptr_1 + 0x0064] := w.[ovl_ptr + 0x0044]
+  w.[actor_ptr_1 + 0x0068] := w.[ovl_ptr + 0x0048]
+  w.[actor_ptr_1 + 0x006C] := w.[ovl_ptr + 0x004C]
+  h.[actor_ptr_1 + 0x0070] := (f.[actor_ptr_1 + 0x0058] + f.[actor_ptr_1 + 0x0064]) / 2
+  h.[actor_ptr_1 + 0x0072] := (f.[actor_ptr_1 + 0x005C] + f.[actor_ptr_1 + 0x0068]) / 2
+  h.[actor_ptr_1 + 0x0074] := (f.[actor_ptr_1 + 0x0060] + f.[actor_ptr_1 + 0x006C]) / 2
+  h.[actor_ptr_1 + 0x0076] := (f.[actor_ptr_1 + 0x0040] + f.[actor_ptr_1 + 0x004C]) / 2
+  h.[actor_ptr_1 + 0x0078] := (f.[actor_ptr_1 + 0x0044] + f.[actor_ptr_1 + 0x0050]) / 2
+  h.[actor_ptr_1 + 0x007A] := (f.[actor_ptr_1 + 0x0048] + f.[actor_ptr_1 + 0x0054]) / 2
+
+
+80050CE4
+called from overlays
+
+80049F94
+called from
+  functions in lut at 800EFA98
+
+8004BD50
+w.[0x800EFA98 + b.[$a2 + 0x0015] * 4]($a0, $a2);
+reentrant through lut calls
+called from
+  8007AF14
+  8007B09C
+  overlays
+
+8004F6E4
+compare a collision struct with all structs in the ac group
+$a0: ctxt (0x801C84A0)
+$a1: collision ctxt (0x801DA300)
+$a2: collision struct (0x801E9DC8)
+called from
+  8004F80C
+  called from
+    8009AF1C
+    called from
+      8009CAC8
+      called from
+        800A0BD0

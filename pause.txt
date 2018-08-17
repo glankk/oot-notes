@@ -1,0 +1,54 @@
+w.[file + 0x1430] (0x8011BA00): pointer to gameinfo (0x801C6E90)
+ctxt 0x801C84A0
+file 0x8011A5D0
+
+8005B860: function start
+8005B994: check start button
+  if !(h.[ctxt + 0x0020] & 0x1000) then goto 8005BA74
+8005B9A8: start of critical path (initiate start menu)
+$a2 = ctxt + 0x10760 (0x801D8C00)
+  h.[file + 0x13EE] := h.[file + 0x13EA]
+  h.[gameinfo + 0x0DB4] := 0xFF51
+  h.[gameinfo + 0x0DB6] := 0x009B
+  h.[$a2 + 0x01EA] := 0x0000
+  h.[$a2 + 0x01E4] := 0x0001
+  $v0 := h.[$a2 + 0x01E8]
+  if h.[gameinfo + 0x07F4] <> 0 then goto 0x8005BA28
+    w.[$a2 + 0x01D8] := w.[0x800F15B8 + $v0 * 4]
+    w.[$a2 + 0x01E0] := w.[0x800F15C8 + $v0 * 4]
+    h.[$a2 + 0x01E8] := h.[0x800F15B0 + $v0 * 2]
+    goto 8005BA60
+8005BA28:
+    w.[$a2 + 0x01D8] := w.[0x800F15E0 + $v0 * 4]
+    w.[$a2 + 0x01E0] := w.[0x800F15F0 + $v0 * 4]
+    h.[$a2 + 0x01E8] := h.[0x800F15D8 + $v0 * 2]
+8005BA60:
+  h.[$a2 + 0x01D4] := 0x0001
+  h.[$a2 + 0x01E6] := h.[$a2 + 0x01E8] * 2 + 1
+8005BA74:
+  if h.[$a2 + 0x01D4] <> 0x0001 then goto 8005BABC
+    h.[gameinfo + 0x0D98] := 0xE7A0
+    h.[gameinfo + 0x0110] := 0x0002
+    if w.[0x800FE474] = 0 then goto 0x8005BAB4
+      w.[0x800FE474] := 0x00000000
+8005BAB4:
+    $a0 := 0x00000001
+    jal 800C7200
+8005BABC:
+
+
+h.[0x801D8DE4] := 0x0001
+h.[0x801D8DEA] := 0x0000
+if h.[0x801C7684] <> 0
+  w.[0x801D8DD8] := w.[0x800F15E0 + h.[0x801D8DE8] * 4]
+  w.[0x801D8DE0] := w.[0x800F15F0 + h.[0x801D8DE8] * 4]
+  h.[0x801D8DE8] := w.[0x800F15D8 + h.[0x801D8DE8] * 2]
+else
+  w.[0x801D8DD8] := w.[0x800F15B8 + h.[0x801D8DE8] * 4]
+  w.[0x801D8DE0] := w.[0x800F15C8 + h.[0x801D8DE8] * 4]
+  h.[0x801D8DE8] := w.[0x800F15B0 + h.[0x801D8DE8] * 2]
+h.[0x801D8DD4] := 0x0001
+h.[0x801D8DE6] := h.[0x801D8DE8] * 2 + 1
+if h.[0x801D8DD4] = 0x0001
+  h.[0x801C7C28] := 0xE7A0
+  h.[0x801C6FA0] := 0x0002
